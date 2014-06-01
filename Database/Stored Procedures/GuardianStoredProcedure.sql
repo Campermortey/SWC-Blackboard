@@ -1,6 +1,8 @@
 USE LMS
 GO
 
+
+--pass in UserId through MVC?
 CREATE PROCEDURE GardianInsert
 (
 	@UserId int,

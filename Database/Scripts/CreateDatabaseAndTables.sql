@@ -12,7 +12,7 @@ go
 
 create table Student(
 StudentId int identity(1,1) not null primary key, --is there a way to set this equal to userIDs with role mapping to student?
-UserId int not null,  -- how do i set this as fk if user table does not yet exist?
+UserId varchar(128) not null foreign key (aspnetusers.Id), -- how do i set this as fk if user table does not yet exist?
 FirstName varchar (20) not null,
 LastName varchar (50),
 Email varchar(40),
@@ -22,7 +22,7 @@ GradeLevel varchar(5),
 
 create table Guardian(
 GuardianId int identity(1,1) not null primary key, --or find some way to set this equal to userIDs with guardian/parent role.
-UserId int not null,
+UserId varchar(128) not null foreign key (aspnetusers.Id),
 FirstName varchar (20) not null,
 LastName varchar (50) not null,
 Email varchar (40)
@@ -42,7 +42,7 @@ References Student (StudentId)
 
 create table Teacher
 (TeacherId int identity(1,1) not null primary key, 
-UserId int not null, -- once we have a User Table will set this as foreign key
+UserId varchar(128) not null foreign key (aspnetusers.Id), -- once we have a User Table will set this as foreign key
 FirstName varchar (20),
 LastName varchar (50),
 Email varchar(40),

@@ -5,7 +5,7 @@ GO
 --pass in UserId through MVC?
 CREATE PROCEDURE GardianInsert
 (
-	@UserId int,
+	@UserId varchar(128),
 	@FirstName varchar(20),
 	@LastName varchar(50),
 	@Email varchar(40)
@@ -19,7 +19,7 @@ GO
 CREATE PROCEDURE GuardianUpdate
 (
 	@GuardianId int,
-	@UserId int,
+	@UserId varchar(128),
 	@FirstName varchar(20),
 	@LastName varchar(50),
 	@Email varchar(40)

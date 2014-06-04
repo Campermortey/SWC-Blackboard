@@ -13,52 +13,83 @@ namespace LMS_mastery.Data
 {
     public class TeacherRepository
     {
-        public TeacherDashboard GetCourseInformation(int courseId)
+        public List<TeacherDashboard> GetSectionsFor(string teacherId)
         {
-            TeacherDashboard course = null;
+            List<TeacherDashboard> courses = new List<TeacherDashboard>();
 
             using (var cn = new SqlConnection(Config.GetConnectionString()))
             {
-                var cmd = new SqlCommand("GetCourseInformation", cn);
+                var cmd = new SqlCommand("GetSectionsFor", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@CourseId", courseId);
+                cmd.Parameters.AddWithValue("@UserId", teacherId);
 
                 cn.Open();
 
                 using (var dr = cmd.ExecuteReader())
                 {
-                    if (dr.Read())
+                    while (dr.Read())
                     {
-                        course = new TeacherDashboard()
-                        {                           
-                            //UserId = dr["UserId"].ToString(),
-                            
-                            //DepartmentId = (int)dr["DepartmentId"],
-                            //DepartmentName = dr["DepartmentName"].ToString(),
-                            //Detail = dr["Detail"].ToString(),
-                            //GradeLevel = (byte)dr["GradeLevel"],
-                            //Room = dr["Room"].ToString(),
-                            //Start = (DateTime)dr["Start"],
-                            //Finish = (DateTime)dr["Finish"], 
+                        courses.Add(new TeacherDashboard()
+                        {
                             CourseId = (int)dr["CourseId"],
                             CourseName = dr["CourseName"].ToString(),
                             SectionId = (int)dr["SectionId"],
-                            TeacherId = (int)dr["TeacherId"],
-                            Period = (byte)dr["Period"],
+                            StudentCount = (byte)dr["StudentCount"],
                             IsArchived = (bool)dr["IsArchived"],
-                            StudentCount = (byte)dr["StudentCount"]
-                                              
-                        };
+                            Period = (byte)dr["Period"]
+                        });
                     }
                 }
             }
 
-            return course;
+            return courses;
         }
 
-        //public List<Course> GetCoursesFor(string teacherId)
+
+        //public CourseInfo GetCourseInformation(int courseId)
         //{
-        //    List<Course> courses = new List<Course>();
+        //    CourseInfo course = null;
+
+        //    using (var cn = new SqlConnection(Config.GetConnectionString()))
+        //    {
+        //        var cmd = new SqlCommand("GetCourseInformation", cn);
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.Parameters.AddWithValue("@CourseId", courseId);
+
+        //        cn.Open();
+
+        //        using (var dr = cmd.ExecuteReader())
+        //        {
+        //            if (dr.Read())
+        //            {
+        //                course = new CourseInfo()
+        //                {                           
+        //                    UserId = dr["UserId"].ToString(),
+        //                    CourseId= (int)dr["CourseId"],
+        //                    CourseName = dr["CourseName"].ToString(),
+        //                    DepartmentId = (int)dr["DepartmentId"],
+        //                    DepartmentName = dr["DepartmentName"].ToString(),
+        //                    Detail = dr["Detail"].ToString(),
+        //                    GradeLevel = (byte)dr["GradeLevel"],
+        //                    SectionId = (int)dr["SectionId"],
+        //                    TeacherId = (int)dr["TeacherId"],
+        //                    Period = (int)dr["Period"],
+        //                    Room = dr["Room"].ToString(),
+        //                    Start = (DateTime)dr["Start"],
+        //                    Finish = (DateTime)dr["Finish"], 
+        //                    IsArchived = (bool)dr["IsArchived"]
+                                              
+        //                };
+        //            }
+        //        }
+        //    }
+
+        //    return course;
+        //}
+
+        //public List<TeacherDashboard> GetCoursesFor(string teacherId)
+        //{
+        //    List<TeacherDashboard> courses = new List<TeacherDashboard>();
 
         //    using (var cn = new SqlConnection(Config.GetConnectionString()))
         //    {
@@ -74,8 +105,8 @@ namespace LMS_mastery.Data
         //            {
         //                courses.Add(new Course()
         //                {
-        //                    ClassId = (int)dr["ClassId"],
-        //                    UserId = dr["UserId"].ToString(),
+        //                    CourseId = (int)dr["CourseId"],
+        //                    CourseName = dr["CourseName"].ToString(),
         //                    Name = dr["Name"].ToString(),
         //                    GradeLevel = (byte)dr["GradeLevel"],
         //                    IsArchived = (bool)dr["IsArchived"],

@@ -173,6 +173,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -232,6 +233,7 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Teacher\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -247,6 +249,16 @@
     <EmbeddedResource Include="Migrations\201406022026364_profile.resx">
       <DependentUpon>201406022026364_profile.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LMS_mastery.Data\LMS_mastery.Data.csproj">
+      <Project>{3f66c8f3-9959-45f0-a0a0-8fecddc4a670}</Project>
+      <Name>LMS_mastery.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LMS_mastery.Models\LMS_mastery.Models.csproj">
+      <Project>{dfe1477e-a2d4-4cb2-a068-88a28e6a4db0}</Project>
+      <Name>LMS_mastery.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

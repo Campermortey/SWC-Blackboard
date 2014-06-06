@@ -24,10 +24,10 @@ namespace LMS_mastery.UI.Migrations
                         UserName = c.String(),
                         PasswordHash = c.String(),
                         SecurityStamp = c.String(),
-                        FirstName = c.String(nullable:false, maxLength:25),
-                        LastName = c.String(nullable: false, maxLength: 25),
-                        SuggestedAccount = c.String(nullable: false, maxLength: 25),
-                        GradeLevel = c.Byte(nullable:true),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        SuggestedAccount = c.String(),
+                        GradeLevel = c.Byte(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id);

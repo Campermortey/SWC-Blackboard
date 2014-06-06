@@ -177,9 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201406022026364_profile.cs" />
-    <Compile Include="Migrations\201406022026364_profile.Designer.cs">
-      <DependentUpon>201406022026364_profile.cs</DependentUpon>
+    <Compile Include="Migrations\201406051444448_profile.cs" />
+    <Compile Include="Migrations\201406051444448_profile.Designer.cs">
+      <DependentUpon>201406051444448_profile.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -246,11 +246,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201406022026364_profile.resx">
-      <DependentUpon>201406022026364_profile.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\LMS_mastery.Data\LMS_mastery.Data.csproj">
       <Project>{3f66c8f3-9959-45f0-a0a0-8fecddc4a670}</Project>
       <Name>LMS_mastery.Data</Name>
@@ -259,6 +254,11 @@
       <Project>{dfe1477e-a2d4-4cb2-a068-88a28e6a4db0}</Project>
       <Name>LMS_mastery.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201406051444448_profile.resx">
+      <DependentUpon>201406051444448_profile.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

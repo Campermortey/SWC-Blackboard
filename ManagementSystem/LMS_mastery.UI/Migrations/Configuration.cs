@@ -28,21 +28,20 @@ namespace LMS_mastery.UI.Migrations
             CreateAdmin(mgr);
             CreateTeacher(mgr);
             CreateStudent(mgr);
-            CreateGuardian(mgr);
+            CreateParent(mgr);
         }
-
-        private void CreateGuardian(UserManager<ApplicationUser> mgr)
+        private void CreateParent(UserManager<ApplicationUser> mgr)
         {
             var user = new ApplicationUser()
             {
                 UserName = "parent",
-                FirstName = "Mother",
+                FirstName = "Parent",
                 LastName = "Smith",
-                SuggestedAccount = "Guardian"
+                SuggestedAccount = "Parent"
             };
 
             mgr.Create(user, "testing123");
-            mgr.AddToRole(user.Id, "Guardian");
+            mgr.AddToRole(user.Id, "Parent");
         }
 
         private void CreateStudent(UserManager<ApplicationUser> mgr)
@@ -105,7 +104,7 @@ namespace LMS_mastery.UI.Migrations
         {
             roleMgr.Create(new IdentityRole("Admin"));
             roleMgr.Create(new IdentityRole("Teacher"));
-            roleMgr.Create(new IdentityRole("Guardian"));
+            roleMgr.Create(new IdentityRole("Parent"));
             roleMgr.Create(new IdentityRole("Student"));
         }
     }

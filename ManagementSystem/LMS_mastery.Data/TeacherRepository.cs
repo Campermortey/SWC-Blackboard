@@ -31,7 +31,7 @@ namespace LMS_mastery.Data
                     {
                         courses.Add(new TeacherDashboard()
                         {
-                            CourseId = (int)dr["CourseId"],
+                            //CourseId = (int)dr["CourseId"],
                             CourseName = dr["CourseName"].ToString(),
                             SectionId = (int)dr["SectionId"],
                             StudentCount = (byte)dr["StudentCount"],

@@ -13,7 +13,7 @@ namespace LMS_mastery.UI.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201406051444448_profile"; }
+            get { return "201406090050142_profile"; }
         }
         
         string IMigrationMetadata.Source

@@ -177,9 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201406051444448_profile.cs" />
-    <Compile Include="Migrations\201406051444448_profile.Designer.cs">
-      <DependentUpon>201406051444448_profile.cs</DependentUpon>
+    <Compile Include="Migrations\201406090050142_profile.cs" />
+    <Compile Include="Migrations\201406090050142_profile.Designer.cs">
+      <DependentUpon>201406090050142_profile.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -256,8 +256,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201406051444448_profile.resx">
-      <DependentUpon>201406051444448_profile.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201406090050142_profile.resx">
+      <DependentUpon>201406090050142_profile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

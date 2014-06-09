@@ -8,7 +8,7 @@ CREATE PROCEDURE GetSectionsFor
 
 
 --selects the tables 
-SELECT  c.CourseName, s.SectionId, count(sc.StudentId) as StudentCount, s.IsArchived
+SELECT  c.CourseName, s.SectionId, count(sc.StudentId) as StudentCount, s.IsArchived, s.Period
 FROM Teacher 
 INNER JOIN Section s
 ON teacher.TeacherId = s.TeacherId
@@ -17,7 +17,7 @@ ON s.CourseId = c.CourseId
 INNER JOIN StudentSection sc
 ON s.SectionId = sc.SectionId
 WHERE UserId = @UserId
-GROUP BY c.CourseName, s.SectionId, s.IsArchived
+GROUP BY c.CourseName, s.SectionId, s.IsArchived, s.Period
 
 
 EXEC GetSectionsFor @UserId = '750621f5-cfdd-4ee9-b55a-4ada1a33d9fb';

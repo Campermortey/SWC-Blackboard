@@ -32,11 +32,17 @@ namespace LMS_mastery.Data
                         courses.Add(new TeacherDashboard()
                         {
                             //CourseId = (int)dr["CourseId"],
-                            CourseName = dr["CourseName"].ToString(),
-                            SectionId = (int)dr["SectionId"],
-                            StudentCount = (byte)dr["StudentCount"],
-                            IsArchived = (bool)dr["IsArchived"],
-                            Period = (byte)dr["Period"]
+                            //CourseName = dr["CourseName"].ToString(),
+                            //SectionId = (int)dr["SectionId"],
+                            //StudentCount = (byte)dr["StudentCount"],
+                            //IsArchived = (bool)dr["IsArchived"],
+                            //Period = (byte)dr["Period"]
+
+                            CourseName = Convert.ToString(dr["CourseName"]),
+                            SectionId = Convert.ToInt32(dr["SectionId"]),
+                            StudentCount = Convert.ToByte(dr["StudentCount"]),
+                            IsArchived = Convert.ToBoolean(dr["IsArchived"]),
+                            Period = Convert.ToByte(dr["Period"])
                         });
                     }
                 }

@@ -8,10 +8,14 @@ namespace LMS_mastery.Models.DTOsPerTable
 {
     public class Course
     {
-        public int CourseId { get; set; }
-        public string CourseName { get; set; }  
-        public int DepartmentId { get; set; }    
-        public string Detail { get; set; }
-        public byte? GradeLevel { get; set; }
+        public int ClassId { get; set; }
+        public string UserId { get; set; }
+        public string Name { get; set; }
+        public byte GradeLevel { get; set; }
+        public bool IsArchived { get; set; }
+        public string Subject { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string Description { get; set; }
     }
 }

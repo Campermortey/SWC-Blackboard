@@ -13,13 +13,13 @@ namespace LMS_mastery.Data
 {
     public class TeacherRepository
     {
-        public List<TeacherDashboard> GetSectionsFor(string teacherId)
+        public List<TeacherDashboard> GetCourseSummariesFor(string teacherId)
         {
             List<TeacherDashboard> courses = new List<TeacherDashboard>();
 
             using (var cn = new SqlConnection(Config.GetConnectionString()))
             {
-                var cmd = new SqlCommand("GetSectionsFor", cn);
+                var cmd = new SqlCommand("ClassSummaryGetList", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@UserId", teacherId);
 
@@ -31,18 +31,10 @@ namespace LMS_mastery.Data
                     {
                         courses.Add(new TeacherDashboard()
                         {
-                            //CourseId = (int)dr["CourseId"],
-                            //CourseName = dr["CourseName"].ToString(),
-                            //SectionId = (int)dr["SectionId"],
-                            //StudentCount = (byte)dr["StudentCount"],
-                            //IsArchived = (bool)dr["IsArchived"],
-                            //Period = (byte)dr["Period"]
-
-                            CourseName = Convert.ToString(dr["CourseName"]),
-                            SectionId = Convert.ToInt32(dr["SectionId"]),
-                            StudentCount = Convert.ToByte(dr["StudentCount"]),
-                            IsArchived = Convert.ToBoolean(dr["IsArchived"]),
-                            Period = Convert.ToByte(dr["Period"])
+                            ClassId = (int)dr["ClassId"],
+                            Name = dr["Name"].ToString(),
+                            IsArchived = (bool)dr["IsArchived"],
+                            NumberOfStudents = (int)dr["NumberOfStudents"]
                         });
                     }
                 }
@@ -51,81 +43,75 @@ namespace LMS_mastery.Data
             return courses;
         }
 
+        public Course GetCourseById(int courseId)
+        {
+            Course course = null;
 
-        //public CourseInfo GetCourseInformation(int courseId)
-        //{
-        //    CourseInfo course = null;
+            using (var cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var cmd = new SqlCommand("ClassGetById", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ClassId", courseId);
 
-        //    using (var cn = new SqlConnection(Config.GetConnectionString()))
-        //    {
-        //        var cmd = new SqlCommand("GetCourseInformation", cn);
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.AddWithValue("@CourseId", courseId);
+                cn.Open();
 
-        //        cn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        course = new Course()
+                        {
+                            ClassId = (int)dr["ClassId"],
+                            UserId = dr["UserId"].ToString(),
+                            Name = dr["Name"].ToString(),
+                            GradeLevel = (byte)dr["GradeLevel"],
+                            IsArchived = (bool)dr["IsArchived"],
+                            Subject = dr["Subject"].ToString(),
+                            StartDate = (DateTime)dr["StartDate"],
+                            EndDate = (DateTime)dr["EndDate"],
+                            Description = dr["Description"].ToString()
+                        };
+                    }
+                }
+            }
 
-        //        using (var dr = cmd.ExecuteReader())
-        //        {
-        //            if (dr.Read())
-        //            {
-        //                course = new CourseInfo()
-        //                {                           
-        //                    UserId = dr["UserId"].ToString(),
-        //                    CourseId= (int)dr["CourseId"],
-        //                    CourseName = dr["CourseName"].ToString(),
-        //                    DepartmentId = (int)dr["DepartmentId"],
-        //                    DepartmentName = dr["DepartmentName"].ToString(),
-        //                    Detail = dr["Detail"].ToString(),
-        //                    GradeLevel = (byte)dr["GradeLevel"],
-        //                    SectionId = (int)dr["SectionId"],
-        //                    TeacherId = (int)dr["TeacherId"],
-        //                    Period = (int)dr["Period"],
-        //                    Room = dr["Room"].ToString(),
-        //                    Start = (DateTime)dr["Start"],
-        //                    Finish = (DateTime)dr["Finish"], 
-        //                    IsArchived = (bool)dr["IsArchived"]
-                                              
-        //                };
-        //            }
-        //        }
-        //    }
+            return course;
+        }
 
-        //    return course;
-        //}
+        public List<Course> GetCoursesFor(string teacherId)
+        {
+            List<Course> courses = new List<Course>();
 
-        //public List<TeacherDashboard> GetCoursesFor(string teacherId)
-        //{
-        //    List<TeacherDashboard> courses = new List<TeacherDashboard>();
+            using (var cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var cmd = new SqlCommand("ClassGetListForUser", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserId", teacherId);
 
-        //    using (var cn = new SqlConnection(Config.GetConnectionString()))
-        //    {
-        //        var cmd = new SqlCommand("ClassGetListForUser", cn);
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.AddWithValue("@UserId", teacherId);
+                cn.Open();
 
-        //        cn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        courses.Add(new Course()
+                        {
+                            ClassId = (int)dr["ClassId"],
+                            UserId = dr["UserId"].ToString(),
+                            Name = dr["Name"].ToString(),
+                            GradeLevel = (byte)dr["GradeLevel"],
+                            IsArchived = (bool)dr["IsArchived"],
+                            Subject = dr["Subject"].ToString(),
+                            StartDate = (DateTime)dr["StartDate"],
+                            EndDate = (DateTime)dr["EndDate"],
+                            Description = dr["Description"].ToString()
+                        });
+                    }
+                }
+            }
 
-        //        using (var dr = cmd.ExecuteReader())
-        //        {
-        //            while (dr.Read())
-        //            {
-        //                courses.Add(new Course()
-        //                {
-        //                    CourseId = (int)dr["CourseId"],
-        //                    CourseName = dr["CourseName"].ToString(),
-        //                    Name = dr["Name"].ToString(),
-        //                    GradeLevel = (byte)dr["GradeLevel"],
-        //                    IsArchived = (bool)dr["IsArchived"],
-        //                    Subject = dr["Subject"].ToString(),
-        //                    StartDate = (DateTime)dr["StartDate"],
-        //                    EndDate = (DateTime)dr["EndDate"],
-        //                    Description = dr["Description"].ToString()
-        //                });
-        //            }
-        //        }
-        //    }
-
-        //    return courses;
-        //}
+            return courses;
+        }
+    }
     }
 }

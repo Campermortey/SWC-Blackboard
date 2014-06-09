@@ -39,17 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOsPerTable\Assignment.cs" />
-    <Compile Include="DTOsPerTable\AssignmentType.cs" />
     <Compile Include="DTOsPerTable\Course.cs" />
-    <Compile Include="DTOsPerTable\Department.cs" />
-    <Compile Include="DTOsPerTable\GradebookEntry.cs" />
-    <Compile Include="DTOsPerTable\Guardian.cs" />
-    <Compile Include="DTOsPerTable\Section.cs" />
-    <Compile Include="DTOsPerTable\Student.cs" />
-    <Compile Include="DTOsPerTable\StudentGuardian.cs" />
-    <Compile Include="DTOsPerTable\StudentSection.cs" />
-    <Compile Include="DTOsPerTable\Teacher.cs" />
     <Compile Include="DTOsStoredProcedure\CourseInfo.cs" />
     <Compile Include="DTOsView\TeacherDashboard.cs" />
     <Compile Include="DTOsView\TeacherRoster.cs" />

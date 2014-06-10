@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LMS_mastery.Models.DTOsPerTable;
 using LMS_mastery.Models.DTOsStoredProcedure;
 using LMS_mastery.Models.DTOsView;
+using Dapper;
+
 
 namespace LMS_mastery.Data
 {
@@ -112,6 +115,19 @@ namespace LMS_mastery.Data
 
             return courses;
         }
+
+        public List<TeacherRoster> GetRosterBy(int courseId)
+        {
+            using (var cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@ClassId", courseId);
+
+                return
+                    cn.Query<TeacherRoster>("TeacherGetClassRoster", p, commandType: CommandType.StoredProcedure)
+                        .ToList();
+            }
+        } 
     }
-    }
+}
 

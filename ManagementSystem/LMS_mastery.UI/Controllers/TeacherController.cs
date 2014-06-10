@@ -19,5 +19,12 @@ namespace LMS_mastery.UI.Controllers
             var courses = repository.GetCourseSummariesFor(User.Identity.GetUserId());
             return View(courses);
         }
+
+        public ActionResult Class(int id)
+        {
+            var repository = new TeacherRepository();
+            var courses = repository.GetRosterBy(id);
+            return View(courses);
+        }
 	}
 }

@@ -82,7 +82,8 @@ namespace LMS_mastery.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName, FirstName = model.FirstName, LastName = model.LastName, SuggestedAccount = model.SuggestedAccount, GradeLevel = model.GradeLevel};
+                var user = new ApplicationUser() { UserName = model.UserName, FirstName = model.FirstName, LastName = model.LastName, 
+                    SuggestedAccount = model.SuggestedAccount, GradeLevel = model.GradeLevel};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

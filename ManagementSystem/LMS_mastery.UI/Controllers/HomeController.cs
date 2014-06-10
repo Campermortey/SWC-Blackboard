@@ -10,21 +10,17 @@ namespace LMS_mastery.UI.Controllers
     {
         public ActionResult Index()
         {
+            //if they are logged in, take it to their dashboard
+            if (Request.IsAuthenticated)
+            {
+                if (User.IsInRole("Teacher"))
+                {
+                    return RedirectToAction("Index", "Teacher");
+                }
+            }
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
     }
 }

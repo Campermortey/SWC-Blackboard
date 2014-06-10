@@ -127,7 +127,19 @@ namespace LMS_mastery.Data
                     cn.Query<TeacherRoster>("TeacherGetClassRoster", p, commandType: CommandType.StoredProcedure)
                         .ToList();
             }
-        } 
+        }
+
+        public void RemoveStudent(string UserId, int ClassId)
+        {
+            using (SqlConnection cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@UserId", UserId);
+                p.Add("@ClassId", ClassId);
+
+                cn.Execute("RosterDeleteStudent", p, commandType: CommandType.StoredProcedure);
+            }
+        }
     }
 }
 

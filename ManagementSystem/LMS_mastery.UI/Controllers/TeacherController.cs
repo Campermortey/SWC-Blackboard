@@ -26,5 +26,14 @@ namespace LMS_mastery.UI.Controllers
             var courses = repository.GetRosterBy(id);
             return View(courses);
         }
+
+        public ActionResult Delete(string UserId, int ClassId)
+        {
+            var repository = new TeacherRepository();
+            repository.RemoveStudent(UserId, ClassId);
+            TempData["message"] = "Student Removed!";
+            
+            return RedirectToAction("Class", new {id = ClassId});
+        }
 	}
 }

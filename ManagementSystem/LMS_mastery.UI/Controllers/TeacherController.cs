@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Antlr.Runtime.Tree;
 using LMS_mastery.Data;
+using LMS_mastery.Models.DTOsPerTable;
+using LMS_mastery.UI.Models.Teacher;
 using Microsoft.AspNet.Identity;
 
 namespace LMS_mastery.UI.Controllers
@@ -23,10 +26,11 @@ namespace LMS_mastery.UI.Controllers
         public ActionResult Class(int id)
         {
             var repository = new TeacherRepository();
-            var courses = repository.GetRosterBy(id);
-            return View(courses);
+            var students = repository.GetRosterBy(id);
+            return View(students);
         }
 
+        [HttpPost]
         public ActionResult Delete(string UserId, int ClassId)
         {
             var repository = new TeacherRepository();
@@ -38,7 +42,28 @@ namespace LMS_mastery.UI.Controllers
 
         public ActionResult Edit(int id)
         {
-            return View();
+            var repository = new TeacherRepository();
+            var course = repository.GetCourseById(id);
+            var model = new EditCourse(course);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditCourse course)
+        {
+            if (ModelState.IsValid)
+            {
+                var dto = course.CreateCourseFromUIModel();
+                dto.UserId = User.Identity.GetUserId();
+
+                var repository = new TeacherRepository();
+                repository.EditCourse(dto);
+
+                TempData["message"] = "Class edited!";
+
+                RedirectToAction("Index");
+            }
+            return View(course);
         }
 	}
 }

@@ -1,7 +1,142 @@
-﻿
+﻿@using System.Web.UI.WebControls
+@model LMS_mastery.UI.Models.Teacher.EditCourse
+
 @{
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>@Model.Name</h2>
 
+<div class="row">
+    <div class="col-sm-8">
+        <fieldset>
+            <legend>Class Information</legend>
+            @using (Html.BeginForm("Edit", "Teacher", FormMethod.Post, new { role = "form" }))
+            {
+                @Html.HiddenFor(m => m.ClassId)
+                <div class="row">
+                    <div class="col-sm-6">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+                            <div>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Name)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.GradeLevel, new { @class = "control-label" })
+                            <div>
+
+                                @Html.DropDownListFor(m => m.GradeLevel, new List<SelectListItem>()
+                                {
+                                    new SelectListItem(){Text="1", Value="1"},
+                                    new SelectListItem(){Text="2", Value="2"},
+                                    new SelectListItem(){Text="3", Value="3"},
+                                    new SelectListItem(){Text="4", Value="4"},
+                                    new SelectListItem(){Text="5", Value="5"},
+                                    new SelectListItem(){Text="6", Value="6"},
+                                    new SelectListItem(){Text="7", Value="7"},
+                                    new SelectListItem(){Text="8", Value="8"},
+                                    new SelectListItem(){Text="9", Value="9"},
+                                    new SelectListItem(){Text="10", Value="10"},
+                                    new SelectListItem(){Text="11", Value="11"},
+                                    new SelectListItem(){Text="12", Value="12"},
+                                },
+                                    "- SELECT -", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.GradeLevel)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.IsArchived, new { @class = "control-label" })
+                            <div>
+                                @Html.CheckBoxFor(m => m.IsArchived, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Subject, new { @class = "control-label" })
+                            <div>
+                                @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Subject)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StartDate, new { @class = "control-label" })
+                            <div>
+                                @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control", Value = Model.StartDate.Value.ToString("d") })
+                                @Html.ValidationMessageFor(m => m.StartDate)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.EndDate, new { @class = "control-label" })
+                            <div>
+                                @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control", Value = Model.EndDate.Value.ToString("d") })
+                                @Html.ValidationMessageFor(m => m.EndDate)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+                            <div>
+                                @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 text-right">
+                        @Html.ActionLink("cancel", "Index", "Teacher", null, new { @class = "btn btn-default" })
+                        
+                       <button class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            }
+        </fieldset>
+    </div>
+    <div class="col-sm-4">
+        <fieldset>
+            <legend>Analytics</legend>
+            <div class="row">
+                <div class="col-sm-12">
+                    <span>To Be Determined...</span>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+@section scripts{
+    @if (TempData["message"] != null)
+    {
+        <script>
+        $(document).ready(function () {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "positionClass": "toast-bottom-full-width",
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.info('@TempData["message"]');
+        });
+        </script>
+    }
+}

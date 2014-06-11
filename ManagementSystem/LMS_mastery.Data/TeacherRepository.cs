@@ -52,7 +52,7 @@ namespace LMS_mastery.Data
 
             using (var cn = new SqlConnection(Config.GetConnectionString()))
             {
-                var cmd = new SqlCommand("ClassGetById", cn);
+                var cmd = new SqlCommand("TeacherClassGetById", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ClassId", courseId);
 
@@ -138,6 +138,25 @@ namespace LMS_mastery.Data
                 p.Add("@ClassId", ClassId);
 
                 cn.Execute("RosterDeleteStudent", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public void EditCourse(Course course)
+        {
+            using (SqlConnection cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@UserId", course.UserId);
+                p.Add("@Name", course.Name);
+                p.Add("@GradeLevel", course.GradeLevel);
+                p.Add("@Subject", course.Subject);
+                p.Add("@IsArchived", course.IsArchived);
+                p.Add("@StartDate", course.StartDate);
+                p.Add("@EndDate", course.EndDate);
+                p.Add("@Description", course.Description);
+                p.Add("@ClassId", course.ClassId);
+
+                cn.Execute("TeacherClassUpdate", p, commandType: CommandType.StoredProcedure);
             }
         }
     }

@@ -1,26 +1,17 @@
-﻿@using System.Web.UI.WebControls
-@model LMS_mastery.UI.Models.Teacher.EditCourse
+﻿@model LMS_mastery.UI.Models.Teacher.AddCourse
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Add Course";
 }
 
-<h2>@Model.Name</h2>
+<h2>Add Course</h2>
 
-<div class="Links">
-    <div class="btn-group" style="margin: 9px 0 5px;">
-        @Html.ActionLink("Class Information", "Edit", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
-        @Html.ActionLink("Roster", "Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
-        @Html.ActionLink("Gradebook", "Gradebook", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
-    </div>
-</div>
 <div class="row">
     <div class="col-sm-8">
         <fieldset>
             <legend>Class Information</legend>
-            @using (Html.BeginForm("Edit", "Teacher", FormMethod.Post, new { role = "form" }))
+            @using (Html.BeginForm("AddCourse", "Teacher", FormMethod.Post, new { role = "form" }))
             {
-                @Html.HiddenFor(m => m.ClassId)
                 <div class="row">
                     <div class="col-sm-6">
                         @Html.AntiForgeryToken()
@@ -52,16 +43,8 @@
                                     new SelectListItem(){Text="11", Value="11"},
                                     new SelectListItem(){Text="12", Value="12"},
                                 },
-                                    "- SELECT -", new { @class = "form-control" })
+                                "- SELECT -", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.GradeLevel)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.IsArchived, new { @class = "control-label" })
-                            <div>
-                                @Html.CheckBoxFor(m => m.IsArchived, new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
@@ -78,14 +61,14 @@
                         <div class="form-group">
                             @Html.LabelFor(m => m.StartDate, new { @class = "control-label" })
                             <div>
-                                @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control", Value = Model.StartDate.HasValue ? Model.StartDate.Value.ToString("d") : string.Empty })
+                                @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.StartDate)
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(m => m.EndDate, new { @class = "control-label" })
                             <div>
-                                @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control", Value = Model.EndDate.Value.ToString("d") })
+                                @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.EndDate)
                             </div>
                         </div>
@@ -94,30 +77,21 @@
                         <div class="form-group">
                             @Html.LabelFor(m => m.Description, new { @class = "control-label" })
                             <div>
-                                @Html.TextAreaFor(m => m.Description, 6, 6, new { @class = "form-control" })
+                                @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-12 text-right">
+                    <div class="col-sm-11 text-right">
                         @Html.ActionLink("Cancel", "Index", "Teacher", null, new { @class = "btn btn-default" })
-                        
-                       <button class="btn btn-primary">Save Record</button>
+                        <button class="btn btn-primary">Save</button>
                     </div>
                 </div>
             }
         </fieldset>
-    </div>
-    <div class="col-sm-4">
-        <fieldset>
-            <legend>Analytics</legend>
-            <div class="row">
-                <div class="col-sm-12">
-                    <span>To Be Determined...</span>
-                </div>
-            </div>
-        </fieldset>
+
     </div>
 </div>
+

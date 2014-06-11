@@ -20,6 +20,7 @@ namespace LMS_mastery.UI.Controllers
         {
             var repository = new TeacherRepository();
             var courses = repository.GetCourseSummariesFor(User.Identity.GetUserId());
+            
             return View(courses);
         }
 
@@ -60,8 +61,31 @@ namespace LMS_mastery.UI.Controllers
                 repository.EditCourse(dto);
 
                 TempData["message"] = "Class edited!";
+                TempData["messageType"] = "Success";
 
-                RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            return View(course);
+        }
+
+        public ActionResult AddCourse()
+        {
+           
+            return View(new AddCourse());
+        }
+
+        [HttpPost]
+        public ActionResult AddCourse(AddCourse course)
+        {
+            if (ModelState.IsValid)
+            {
+                var dto = course.CreateCourseFromUIModel();
+                dto.UserId = User.Identity.GetUserId();
+
+                var repository = new TeacherRepository();
+                repository.AddCourse(dto);
+
+                return RedirectToAction("Index");
             }
             return View(course);
         }

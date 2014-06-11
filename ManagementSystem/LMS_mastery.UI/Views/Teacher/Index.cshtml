@@ -16,7 +16,7 @@
         <fieldset ng-controller="SummaryCtrl">
             <div class="row">
                 <div class="col-sm-3">
-                    @Html.ActionLink("Add Class", "AddClass", "Teacher", new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Add Class", "AddCourse", "Teacher", null, new { @class = "btn btn-primary" })
                 </div>
                 <div class="col-sm-5">
 
@@ -72,15 +72,34 @@
             };
         });
     </script>
+    @if (TempData["message"] != null)
+    {
+        <script>
+        $(document).ready(function () {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "positionClass": "toast-bottom-full-width",
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
 
-    <script>
-        //$(document).ready(function() {
-        //    $('.moveRight').css("color", "red", "!important");
-        //});
+            toastr.success('@TempData["message"]');
 
-        //$('.moveRight').css('cssText', 'text-align: right !important');
-
-    </script>
+            @*@if (TempData["MessageType"].ToString() == "Success")
+            {
+                <Text>toastr.success('@TempData["message"]');</Text>
+            }*@                
+        });
+        </script>
+    }
 }
 
 

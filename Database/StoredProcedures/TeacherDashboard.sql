@@ -6,10 +6,8 @@ CREATE PROCEDURE ClassSummaryGetList
 	@UserId nvarchar(128)
 ) AS
 
-SELECT c.ClassId, c.Name, c.IsArchived, count(r.ClassId) as NumberOfStudents
+SELECT c.ClassId, c.Name, c.IsArchived, 
+	(SELECT count(*) FROM Roster WHERE ClassId = c.ClassId) as NumberOfStudents
 FROM Class c
-INNER JOIN Roster r
-ON c.ClassId = r.ClassId
 WHERE c.UserId = @UserId
-GROUP BY c.ClassId, c.Name, c.IsArchived
-
+ORDER BY c.Name, c.ClassId, c.IsArchived

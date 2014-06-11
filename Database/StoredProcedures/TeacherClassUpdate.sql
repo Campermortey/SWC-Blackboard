@@ -1,4 +1,4 @@
-CREATE PROCEDURE ClassUpdate (
+CREATE PROCEDURE TeacherClassUpdate (
 	@ClassId int,
 	@UserId varchar(128),
 	@Name varchar(50),

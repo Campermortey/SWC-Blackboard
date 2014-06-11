@@ -184,6 +184,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Teacher\AddCourse.cs" />
     <Compile Include="Models\Teacher\EditCourse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -250,6 +251,7 @@
     <Content Include="Views\Teacher\Class.cshtml" />
     <Content Include="Scripts\toastr.min.js.map" />
     <Content Include="Views\Teacher\Edit.cshtml" />
+    <Content Include="Views\Teacher\AddCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

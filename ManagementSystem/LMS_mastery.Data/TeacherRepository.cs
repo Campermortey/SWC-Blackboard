@@ -159,6 +159,26 @@ namespace LMS_mastery.Data
                 cn.Execute("TeacherClassUpdate", p, commandType: CommandType.StoredProcedure);
             }
         }
+
+        public void AddCourse(Course course)
+        {
+            using (SqlConnection cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@UserId", course.UserId);
+                p.Add("@Name", course.Name);
+                p.Add("@GradeLevel", course.GradeLevel);
+                p.Add("@Subject", course.Subject);
+                p.Add("@StartDate", course.StartDate);
+                p.Add("@EndDate", course.EndDate);
+                p.Add("@Description", course.Description);
+                p.Add("@ClassId", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                cn.Execute("TeacherClassInsert", p, commandType: CommandType.StoredProcedure);
+
+                course.ClassId = p.Get<int>("@ClassId");
+            }
+        }
     }
 }
 

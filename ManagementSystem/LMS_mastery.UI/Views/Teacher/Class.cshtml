@@ -4,11 +4,15 @@
     ViewBag.Title = "Class";
 }
 
-<h2>Class</h2>
+<h2>Class Roster</h2>
+<div class="Links">
+    <div class="btn-group" style="margin: 9px 0 5px;">
+        @Html.ActionLink("Information", "Edit", "Teacher", new { id = ViewContext.RouteData.Values["id"]} , new{ @class = "btn btn-default", @type = "button" })
+        @Html.ActionLink("Roster", "Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
+        @Html.ActionLink("Gradebook", "Gradebook", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
+    </div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <div class="row">
     <div class="col-sm-6">
         <table class="table ">
@@ -38,7 +42,7 @@
                         @Html.DisplayFor(modelItem => item.UserName)
                     </td>
                     <td>
-                        @using(Html.BeginForm("Delete", "Teacher", FormMethod.Post))
+                        @using (Html.BeginForm("Delete", "Teacher", FormMethod.Post))
                         {
                             @Html.Hidden("UserId", item.UserId)
                             @Html.Hidden("ClassId", item.ClassId)
@@ -51,27 +55,27 @@
         </table>
     </div>
 </div>
-@section("scripts"){
+@section scripts{
 @if (TempData["message"] != null)
 {
     <script>
-    $(document).ready(function () {
-        toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "positionClass": "toast-bottom-full-width",
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
-        toastr.success('@TempData["message"]');
-    });
+        $(document).ready(function () {
+            toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "positionClass": "toast-bottom-full-width",
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.success('@TempData["message"]');
+        });
     </script>
 }
 }

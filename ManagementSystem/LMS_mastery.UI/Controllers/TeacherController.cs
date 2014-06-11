@@ -35,5 +35,10 @@ namespace LMS_mastery.UI.Controllers
             
             return RedirectToAction("Class", new {id = ClassId});
         }
+
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
 	}
 }

@@ -9,15 +9,19 @@
 
 <div class="Links">
     <div class="btn-group" style="margin: 9px 0 5px;">
+        <!--Small button bar that allows teacher to go to different areas in the website-->
         @Html.ActionLink("Class Information", "Edit", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
         @Html.ActionLink("Roster", "Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
         @Html.ActionLink("Gradebook", "Gradebook", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
     </div>
 </div>
+<!--Begin the edit form & Analytics-->
 <div class="row">
     <div class="col-sm-8">
         <fieldset>
+            <!--Begin edit form-->
             <legend>Class Information</legend>
+            <!--Current shows information that already exist for the course. User is able to change and save that data-->
             @using (Html.BeginForm("Edit", "Teacher", FormMethod.Post, new { role = "form" }))
             {
                 @Html.HiddenFor(m => m.ClassId)
@@ -99,15 +103,16 @@
                         </div>
                     </div>
                 </div>
-
+                <!---Buttons to save the form or go back to the roster-->
                 <div class="row">
                     <div class="col-sm-12 text-right">
                         @Html.ActionLink("Cancel", "Index", "Teacher", null, new { @class = "btn btn-default" })
                         
-                       <button class="btn btn-primary">Save Record</button>
+                        <button class="btn btn-primary">Save Record</button>
                     </div>
                 </div>
             }
+            <!--End edit form-->
         </fieldset>
     </div>
     <div class="col-sm-4">
@@ -121,3 +126,4 @@
         </fieldset>
     </div>
 </div>
+<!--End edit form and analytics-->

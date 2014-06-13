@@ -1,4 +1,5 @@
-﻿@using System.Web.UI.WebControls
+﻿@using System.Net.Configuration
+@using System.Web.UI.WebControls
 @model LMS_mastery.UI.Models.Teacher.EditCourse
 
 @{
@@ -106,7 +107,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 text-right">
+                    <div class="col-sm-7 text-right">
                         @Html.ActionLink("Cancel", "Index", "Teacher", null, new { @class = "btn btn-default" })
 
                         <button class="btn btn-primary">Save Record</button>
@@ -121,7 +122,14 @@
             <legend>Analytics</legend>
             <div class="row">
                 <div class="col-sm-12">
-
+                    <blockquote>
+                        <p>Total Students Enrolled: <strong>@Model.ClassAnalytics.Sum(a => a.NumberStudents)</strong></p>
+                    </blockquote>
+                    
+                    <div class="row">
+                        <h4 class="col-sm-1">Class</h4>
+                        <h4 class="col-sm-offset-9">Students</h4>
+                    </div>
                     @foreach (var analytic in Model.ClassAnalytics)
                     {
                         <ul class="list-group">
@@ -130,10 +138,8 @@
                                 @analytic.LetterGrade
                             </li>
                         </ul>
-
+                       
                     }
-
-
                 </div>
             </div>
         </fieldset>

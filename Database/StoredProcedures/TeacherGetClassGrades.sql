@@ -4,11 +4,11 @@ ALTER PROCEDURE TeacherGetClassGrades
 )AS
 
 --Returns all the Grades with the count of students
-SELECT ll.Letter, ISNULL(mycount, 0) AS NumberStudents 
+SELECT ll.Letter as LetterGrade, ISNULL(mycount, 0) AS NumberStudents 
 FROM ListOfLetters ll
 	LEFT JOIN (SELECT sg.LetterGrade , Count(sg.LetterGrade) as mycount, ClassId
 				FROM StudentGrades sg 
-				WHERE ClassId = 8
+				WHERE ClassId = @ClassId
 				GROUP BY sg.LetterGrade, ClassId
 				) table2
 				on ll.Letter = table2.LetterGrade

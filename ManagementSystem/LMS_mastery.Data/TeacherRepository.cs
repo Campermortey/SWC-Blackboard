@@ -10,6 +10,7 @@ using LMS_mastery.Models.DTOsPerTable;
 using LMS_mastery.Models.DTOsStoredProcedure;
 using LMS_mastery.Models.DTOsView;
 using Dapper;
+using LMS_mastery.UI.Models.Teacher;
 
 
 namespace LMS_mastery.Data
@@ -205,11 +206,25 @@ namespace LMS_mastery.Data
                 p.Add("@Description", course.Description);
                 p.Add("@ClassId", dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-                //executes the stored procedure
+                //executes the stored procedure. Execute for insert, update, delete
                 cn.Execute("TeacherClassInsert", p, commandType: CommandType.StoredProcedure);
 
                 //ClassId stored output
                 course.ClassId = p.Get<int>("@ClassId");
+            }
+        }
+
+        // Get a list of Analytics
+        public List<Analytics> GetClassGrades(int ClassId)
+        {
+            using (SqlConnection cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@ClassId", ClassId);
+
+                //Query the Stored Procedure
+                return 
+                    cn.Query<Analytics>("TeacherGetClassGrades", p, commandType: CommandType.StoredProcedure).ToList();
             }
         }
     }

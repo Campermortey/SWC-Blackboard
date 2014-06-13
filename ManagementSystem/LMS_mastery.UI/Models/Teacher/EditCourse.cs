@@ -31,6 +31,9 @@ namespace LMS_mastery.UI.Models.Teacher
         public bool IsArchived { get; set; }
         public int ClassId { get; set; }
 
+        //reference the Analytics class
+        public List<Analytics> ClassAnalytics { get; set; }
+
         //set up an empty constructor
         public EditCourse()
         {

@@ -28,8 +28,8 @@
                 <div class="row">
                     <div class="col-sm-6">
                         @Html.AntiForgeryToken()
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+                        <div class="form-group control-label">
+                            <b>Name</b>
                             <div>
                                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.Name)
@@ -37,8 +37,8 @@
                         </div>
                     </div>
                     <div class="col-sm-3">
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.GradeLevel, new { @class = "control-label" })
+                        <div class="form-group control-label">
+                            <b>Grade Level</b>
                             <div>
 
                                 @Html.DropDownListFor(m => m.GradeLevel, new List<SelectListItem>()
@@ -61,14 +61,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.IsArchived, new { @class = "control-label" })
-                            <div>
-                                @Html.CheckBoxFor(m => m.IsArchived, new { @class = "form-control" })
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
@@ -79,15 +72,15 @@
                                 @Html.ValidationMessageFor(m => m.Subject)
                             </div>
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.StartDate, new { @class = "control-label" })
+                        <div class="form-group control-label">
+                            <b>Start Date</b>
                             <div>
                                 @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control", Value = Model.StartDate.HasValue ? Model.StartDate.Value.ToString("d") : string.Empty })
                                 @Html.ValidationMessageFor(m => m.StartDate)
                             </div>
                         </div>
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.EndDate, new { @class = "control-label" })
+                        <div class="form-group control-label">
+                            <b>End Date</b>
                             <div>
                                 @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control", Value = Model.EndDate.Value.ToString("d") })
                                 @Html.ValidationMessageFor(m => m.EndDate)
@@ -105,9 +98,17 @@
                 </div>
                 <!---Buttons to save the form or go back to the roster-->
                 <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group control-label">
+                            <b>Archived?</b>
+                            <div>
+                                @Html.CheckBoxFor(m => m.IsArchived, new { @class = "checkbox" })
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-sm-12 text-right">
                         @Html.ActionLink("Cancel", "Index", "Teacher", null, new { @class = "btn btn-default" })
-                        
+
                         <button class="btn btn-primary">Save Record</button>
                     </div>
                 </div>
@@ -120,7 +121,19 @@
             <legend>Analytics</legend>
             <div class="row">
                 <div class="col-sm-12">
-                    <span>To Be Determined...</span>
+
+                    @foreach (var analytic in Model.ClassAnalytics)
+                    {
+                        <ul class="list-group">
+                            <li class="list-group-item" style="font-size: 19px">
+                                <span class="badge" style="font-size: 19px">@analytic.NumberStudents</span>
+                                @analytic.LetterGrade
+                            </li>
+                        </ul>
+
+                    }
+
+
                 </div>
             </div>
         </fieldset>

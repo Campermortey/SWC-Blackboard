@@ -55,6 +55,9 @@ namespace LMS_mastery.UI.Controllers
 
             //Create a new Course with the course passed in
             var model = new EditCourse(course);
+
+            //Get the class grades passed in Class Id save to Model.ClassAnalytics List
+            model.ClassAnalytics = repository.GetClassGrades(id);
             return View(model);
         }
 

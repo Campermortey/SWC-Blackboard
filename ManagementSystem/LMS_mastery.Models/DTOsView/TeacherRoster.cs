@@ -14,5 +14,9 @@ namespace LMS_mastery.Models.DTOsView
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserName { get; set; }
+
+
+        //reference the TeacherSearch clas to model bind student search
+        public List<TeacherSearch> RosterSearch { get; set; }
     }
 }

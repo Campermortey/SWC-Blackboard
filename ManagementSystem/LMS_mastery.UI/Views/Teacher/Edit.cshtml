@@ -1,4 +1,6 @@
-﻿@using System.Net.Configuration
+﻿@using System.Drawing
+@using System.Net.Configuration
+@using System.ServiceModel.Description
 @using System.Web.UI.WebControls
 @model LMS_mastery.UI.Models.Teacher.EditCourse
 
@@ -62,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
@@ -103,7 +105,7 @@
                         <div class="form-group control-label">
                             <b>Archived?</b>
                             <div>
-                                @Html.CheckBoxFor(m => m.IsArchived, new { @class = "checkbox" })
+                                @Html.CheckBoxFor(m => m.IsArchived, new { @class = "checkbox biggerCheckbox" })
                             </div>
                         </div>
                     </div>
@@ -125,7 +127,7 @@
                     <blockquote>
                         <p>Total Students Enrolled: <strong>@Model.ClassAnalytics.Sum(a => a.NumberStudents)</strong></p>
                     </blockquote>
-                    
+
                     <div class="row">
                         <h4 class="col-sm-1">Class</h4>
                         <h4 class="col-sm-offset-9">Students</h4>
@@ -138,7 +140,6 @@
                                 @analytic.LetterGrade
                             </li>
                         </ul>
-                       
                     }
                 </div>
             </div>
@@ -146,3 +147,6 @@
     </div>
 </div>
 <!--End edit form and analytics-->
+<script>
+    $(".biggerCheckbox").css({ "-webkit-transform": "scale(1.6, 1.6)", "-moz-transform": "scale(1.6, 1.6)", "-0-transform": "scale(1.6, 1.6)" });
+</script>

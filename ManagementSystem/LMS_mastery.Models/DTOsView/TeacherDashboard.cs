@@ -13,5 +13,6 @@ namespace LMS_mastery.Models.DTOsView
         public int NumberOfStudents { get; set; }
         public bool IsArchived { get; set; }
 
+
     }
 }

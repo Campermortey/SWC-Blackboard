@@ -10,9 +10,10 @@ namespace LMS_mastery.Models.DTOsView
     {
 
         //student search
-        public int StudentId { get; set; }
-        public string Firstname { get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public byte GradeLevel { get; set; }
+        public int UserId { get; set; }
+
     }
 }

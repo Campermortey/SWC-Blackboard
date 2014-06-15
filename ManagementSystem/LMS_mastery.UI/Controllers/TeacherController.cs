@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Antlr.Runtime.Tree;
 using LMS_mastery.Data;
 using LMS_mastery.Models.DTOsPerTable;
+using LMS_mastery.Models.DTOsStoredProcedure;
+using LMS_mastery.Models.DTOsView;
 using LMS_mastery.UI.Models.Teacher;
 using Microsoft.AspNet.Identity;
 
@@ -25,11 +27,37 @@ namespace LMS_mastery.UI.Controllers
         }
 
         // Shows all the students enrolled in the class. Passed in ClassId
+        // Also returns all the students available to add to the class
+
         public ActionResult Class(int id)
         {
             var repository = new TeacherRepository();
+            
             var students = repository.GetRosterBy(id);
+            
             return View(students);
+        }
+
+        [HttpPost]
+        public ActionResult Class(RosterSearchRequest request)
+        {
+            //create a new repository
+            var repository = new TeacherRepository();
+
+            //create a new TeacherRoster
+            var model = new TeacherRoster();
+            var listRoster = new List<TeacherSearch>();
+
+            //save the list of TeacherSearch to model.RosterSearch
+            listRoster = repository.Search(request);
+
+            model.RosterSearch = listRoster;
+            //model.ClassId = request.ClassId;
+            //model.RosterSearch = listRoster;
+            
+           
+           //return view with this model
+            return View(model);
         }
 
         //Deletes a student from a course. Sets "IsDeleted" to '1'. 

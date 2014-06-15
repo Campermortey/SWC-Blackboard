@@ -227,6 +227,64 @@ namespace LMS_mastery.Data
                     cn.Query<Analytics>("TeacherGetClassGrades", p, commandType: CommandType.StoredProcedure).ToList();
             }
         }
+
+        public List<TeacherSearch> Search(RosterSearchRequest request)
+        {
+            if (string.IsNullOrEmpty(request.LastName))
+            {
+                return RosterSearchByGradeLevel(request);
+            }
+
+            if (request.GradeLevel == null)
+            {
+                return RosterSearchByLastName(request);
+            }
+
+            return RosterSearchByLastNameAndGradeLevel(request);
+        }
+
+        private List<TeacherSearch> RosterSearchByGradeLevel(RosterSearchRequest request)
+        {
+            using (var cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@ClassId", request.ClassId);
+                p.Add("@GradeLevel", request.GradeLevel);
+
+                return
+                    cn.Query<TeacherSearch>("RosterSearchByGradeLevel", p, commandType: CommandType.StoredProcedure)
+                        .ToList();
+            }
+        }
+
+        private List<TeacherSearch> RosterSearchByLastNameAndGradeLevel(RosterSearchRequest request)
+        {
+            using (var cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@ClassId", request.ClassId);
+                p.Add("@GradeLevel", request.GradeLevel);
+                p.Add("@LastName", request.LastName);
+
+                return
+                    cn.Query<TeacherSearch>("RosterSearchByLastNameAndGradeLevel", p, commandType: CommandType.StoredProcedure)
+                        .ToList();
+            }
+        }
+
+        private List<TeacherSearch> RosterSearchByLastName(RosterSearchRequest request)
+        {
+            using (var cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@ClassId", request.ClassId);
+                p.Add("@LastName", request.LastName);
+
+                return
+                    cn.Query<TeacherSearch>("RosterSearchByLastName", p, commandType: CommandType.StoredProcedure)
+                        .ToList();
+            }
+        } 
     }
 }
 

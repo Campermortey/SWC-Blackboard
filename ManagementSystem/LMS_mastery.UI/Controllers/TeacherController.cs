@@ -158,7 +158,9 @@ namespace LMS_mastery.UI.Controllers
             
             // AddToRoster takes parameters UserId and ClassId
             repository.AddToRoster(UserId, ClassId);
-            
+
+            TempData["studentMessage"] = "Student saved to course!";
+
             // Must take in route data
             return RedirectToAction("Class", new{id = ClassId});
         }

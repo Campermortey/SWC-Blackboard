@@ -61,55 +61,66 @@
             <fieldset>
                 <legend>Add Student</legend>
                 <div class="row">
-                    <div class="col-sm-12">
-                        @using (Html.BeginForm("Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, FormMethod.Post, new { role = "form" }))
-                        {
+                    @using (Html.BeginForm("Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, FormMethod.Post, new { role = "form" }))
+                    {
+                        <div class="col-sm-6">
+                            <h4>Last Name</h4>
+
                             @Html.TextBoxFor(m => m.SearchRequest.LastName, new { @class = "form-control" })
+
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>Grade Level</h4>
+
                             @Html.DropDownListFor(m => m.SearchRequest.GradeLevel, new List<SelectListItem>()
                             {
-                                    new SelectListItem(){Text="1", Value="1"},
-                                    new SelectListItem(){Text="2", Value="2"},
-                                    new SelectListItem(){Text="3", Value="3"},
-                                    new SelectListItem(){Text="4", Value="4"},
-                                    new SelectListItem(){Text="5", Value="5"},
-                                    new SelectListItem(){Text="6", Value="6"},
-                                    new SelectListItem(){Text="7", Value="7"},
-                                    new SelectListItem(){Text="8", Value="8"},
-                                    new SelectListItem(){Text="9", Value="9"},
-                                    new SelectListItem(){Text="10", Value="10"},
-                                    new SelectListItem(){Text="11", Value="11"},
-                                    new SelectListItem(){Text="12", Value="12"},
-                                },
-                                    "- SELECT -", new { @class = "form-control" })
-                            <div class="col-sm-7 text-right">
-                                <button class="btn btn-primary">Search</button>
-                            </div>
-                        }
-                        <br />
-                        <br />
+                                new SelectListItem() {Text = "1", Value = "1"},
+                                new SelectListItem() {Text = "2", Value = "2"},
+                                new SelectListItem() {Text = "3", Value = "3"},
+                                new SelectListItem() {Text = "4", Value = "4"},
+                                new SelectListItem() {Text = "5", Value = "5"},
+                                new SelectListItem() {Text = "6", Value = "6"},
+                                new SelectListItem() {Text = "7", Value = "7"},
+                                new SelectListItem() {Text = "8", Value = "8"},
+                                new SelectListItem() {Text = "9", Value = "9"},
+                                new SelectListItem() {Text = "10", Value = "10"},
+                                new SelectListItem() {Text = "11", Value = "11"},
+                                new SelectListItem() {Text = "12", Value = "12"},
+                            },
+                                "----", new { @class = "form-control" })
 
-                        <div class="row">
-                            @foreach (var request in Model.SearchResults)
-                            {
-                                <ul class="list-group">
-                                    <li class="list-group-item" style="font-size: 19px">
-                                        <span class="badge" style="font-size: 19px">@request.GradeLevel</span>
-
-                                        @request.FirstName   @request.LastName
-                                        @using (Html.BeginForm("AddStudent", "Teacher", FormMethod.Post))
-                                        {
-                                            @Html.Hidden("UserId", request.UserId)
-                                            @Html.Hidden("ClassId", ViewContext.RouteData.Values["id"])
-                                            <button class="glyphicon glyphicon-plus"></button>
-                                        }
-                                    </li>
-                                </ul>
-                            }
                         </div>
-                    </div>
+
+                        <div class="col-sm-1">
+                            <br />
+                            <br />
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                    }
                 </div>
+                <br />
+                <div class="row">
+                    @foreach (var request in Model.SearchResults)
+                    {
+                        <ul class="list-group">
+                            <li class="list-group-item" style="font-size: 19px">
+                                <span class="badge" style="font-size: 19px">@request.GradeLevel</span>
+
+                                @request.FirstName   @request.LastName
+                                @using (Html.BeginForm("AddStudent", "Teacher", FormMethod.Post))
+                                {
+                                    @Html.Hidden("UserId", request.UserId)
+                                    @Html.Hidden("ClassId", ViewContext.RouteData.Values["id"])
+                                    <button class="glyphicon glyphicon-plus"></button>
+                                }
+                            </li>
+                        </ul>
+                    }
+                </div>
+
             </fieldset>
         </div>
+
     </div>
 }
 else
@@ -125,56 +136,114 @@ else
             <fieldset>
                 <legend>Add Student</legend>
                 <div class="row">
-                    <div class="col-sm-12">
-                        @using (Html.BeginForm("Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, FormMethod.Post, new { role = "form" }))
-                        {
+                    @using (Html.BeginForm("Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, FormMethod.Post, new { role = "form" }))
+                    {
+                        <div class="col-sm-6">
+                            <h4>Last Name</h4>
+
                             @Html.TextBoxFor(m => m.SearchRequest.LastName, new { @class = "form-control" })
+
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>Grade Level</h4>
+
                             @Html.DropDownListFor(m => m.SearchRequest.GradeLevel, new List<SelectListItem>()
                             {
-                                    new SelectListItem(){Text="1", Value="1"},
-                                    new SelectListItem(){Text="2", Value="2"},
-                                    new SelectListItem(){Text="3", Value="3"},
-                                    new SelectListItem(){Text="4", Value="4"},
-                                    new SelectListItem(){Text="5", Value="5"},
-                                    new SelectListItem(){Text="6", Value="6"},
-                                    new SelectListItem(){Text="7", Value="7"},
-                                    new SelectListItem(){Text="8", Value="8"},
-                                    new SelectListItem(){Text="9", Value="9"},
-                                    new SelectListItem(){Text="10", Value="10"},
-                                    new SelectListItem(){Text="11", Value="11"},
-                                    new SelectListItem(){Text="12", Value="12"},
-                                },
-                                    "- SELECT -", new { @class = "form-control" })
-                            <div class="col-sm-7 text-right">
-                                <button class="btn btn-primary">Search</button>
-                            </div>
-                        }
-                        <br />
-                        <br />
+                                new SelectListItem() {Text = "1", Value = "1"},
+                                new SelectListItem() {Text = "2", Value = "2"},
+                                new SelectListItem() {Text = "3", Value = "3"},
+                                new SelectListItem() {Text = "4", Value = "4"},
+                                new SelectListItem() {Text = "5", Value = "5"},
+                                new SelectListItem() {Text = "6", Value = "6"},
+                                new SelectListItem() {Text = "7", Value = "7"},
+                                new SelectListItem() {Text = "8", Value = "8"},
+                                new SelectListItem() {Text = "9", Value = "9"},
+                                new SelectListItem() {Text = "10", Value = "10"},
+                                new SelectListItem() {Text = "11", Value = "11"},
+                                new SelectListItem() {Text = "12", Value = "12"},
+                            },
+                                "----", new { @class = "form-control" })
 
-                        <div class="row">
-                            @foreach (var request in Model.SearchResults)
-                            {
-                                <ul class="list-group">
-                                    <li class="list-group-item" style="font-size: 19px">
-                                        <span class="badge" style="font-size: 19px">@request.GradeLevel</span>
-
-                                        @request.FirstName   @request.LastName
-                                        @using (Html.BeginForm("AddStudent", "Teacher", FormMethod.Post))
-                                        {
-                                            @Html.Hidden("UserId", request.UserId)
-                                            @Html.Hidden("ClassId", ViewContext.RouteData.Values["id"])
-                                            <button class="glyphicon glyphicon-plus"></button>
-                                        }
-                                    </li>
-                                </ul>
-                            }
                         </div>
-                    </div>
+
+                        <div class="col-sm-1">
+                            <br />
+                            <br />
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                    }
                 </div>
+                <br/>
+                    <div class="row">
+                        @foreach (var request in Model.SearchResults)
+                        {
+                            <ul class="list-group">
+                                <li class="list-group-item" style="font-size: 19px">
+                                    <span class="badge" style="font-size: 19px">@request.GradeLevel</span>
+
+                                    @request.FirstName   @request.LastName
+                                    @using (Html.BeginForm("AddStudent", "Teacher", FormMethod.Post))
+                                    {
+                                        @Html.Hidden("UserId", request.UserId)
+                                        @Html.Hidden("ClassId", ViewContext.RouteData.Values["id"])
+                                        <button class="glyphicon glyphicon-plus"></button>
+                                    }
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                
             </fieldset>
         </div>
     </div>
+
+    @*<div class="col-sm-12">
+        @using (Html.BeginForm("Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, FormMethod.Post, new { role = "form" }))
+        {
+            @Html.TextBoxFor(m => m.SearchRequest.LastName, new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.SearchRequest.GradeLevel, new List<SelectListItem>()
+            {
+                new SelectListItem(){Text="1", Value="1"},
+                new SelectListItem(){Text="2", Value="2"},
+                new SelectListItem(){Text="3", Value="3"},
+                new SelectListItem(){Text="4", Value="4"},
+                new SelectListItem(){Text="5", Value="5"},
+                new SelectListItem(){Text="6", Value="6"},
+                new SelectListItem(){Text="7", Value="7"},
+                new SelectListItem(){Text="8", Value="8"},
+                new SelectListItem(){Text="9", Value="9"},
+                new SelectListItem(){Text="10", Value="10"},
+                new SelectListItem(){Text="11", Value="11"},
+                new SelectListItem(){Text="12", Value="12"},
+            },
+                "- SELECT -", new { @class = "form-control" })
+            <div class="col-sm-7 text-right">
+                <button class="btn btn-primary">Search</button>
+            </div>
+        }
+        <br />
+        <br />
+
+        <div class="row">
+            @foreach (var request in Model.SearchResults)
+            {
+                <ul class="list-group">
+                    <li class="list-group-item" style="font-size: 19px">
+                        <span class="badge" style="font-size: 19px">@request.GradeLevel</span>
+
+                        @request.FirstName   @request.LastName
+                        @using (Html.BeginForm("AddStudent", "Teacher", FormMethod.Post))
+                        {
+                            @Html.Hidden("UserId", request.UserId)
+                            @Html.Hidden("ClassId", ViewContext.RouteData.Values["id"])
+                            <button class="glyphicon glyphicon-plus"></button>
+                        }
+                    </li>
+                </ul>
+            }
+        </div>*@
+
+
 
 }
 @section scripts{
@@ -198,6 +267,31 @@ else
                     "hideMethod": "fadeOut"
                 }
                 toastr.info('@TempData["message"]');
+            });
+        </script>
+    }
+    @if (TempData["studentMessage"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "positionClass": "toast-bottom-full-width",
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                }
+
+                toastr.info('@TempData["studentMessage"]');
+
+
             });
         </script>
     }

@@ -15,7 +15,7 @@
         <!--Small button bar that allows teacher to go to different areas in the website-->
         @Html.ActionLink("Class Information", "Edit", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
         @Html.ActionLink("Roster", "Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
-        @Html.ActionLink("Gradebook", "Gradebook", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
+        @Html.ActionLink("Gradebook", "GradebookView", "Gradebook", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
     </div>
 </div>
 <!--Begin the edit form & Analytics-->

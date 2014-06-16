@@ -305,6 +305,21 @@ namespace LMS_mastery.Data
 
             }
         }
+
+        // Get the gradebook view for a class
+        public List<GradebookView> GetGradebookViews(int ClassId)
+        {
+            using (var cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@ClassId", ClassId);
+
+
+                return
+                    cn.Query<GradebookView>("TeacherGradebookView", p, commandType: CommandType.StoredProcedure)
+                        .ToList();
+            }
+        }
     }
 }
 

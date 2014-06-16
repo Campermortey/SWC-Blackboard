@@ -12,5 +12,6 @@ namespace LMS_mastery.Models.DTOsView
         public List<TeacherRoster> Roster { get; set; }
         public RosterSearchRequest SearchRequest { get; set; }
         public List<TeacherSearch> SearchResults { get; set; }
+        public RosterAddRequest AddRequest { get; set; }
     }
 }

@@ -243,6 +243,7 @@ namespace LMS_mastery.Data
             return RosterSearchByLastNameAndGradeLevel(request);
         }
 
+        //search by only grade level and return a list of students
         private List<TeacherSearch> RosterSearchByGradeLevel(RosterSearchRequest request)
         {
             using (var cn = new SqlConnection(Config.GetConnectionString()))
@@ -257,6 +258,7 @@ namespace LMS_mastery.Data
             }
         }
 
+        //search by last name and grade level both. Return list of students
         private List<TeacherSearch> RosterSearchByLastNameAndGradeLevel(RosterSearchRequest request)
         {
             using (var cn = new SqlConnection(Config.GetConnectionString()))
@@ -272,6 +274,7 @@ namespace LMS_mastery.Data
             }
         }
 
+        //Search by last name only for a student. Return list of students
         private List<TeacherSearch> RosterSearchByLastName(RosterSearchRequest request)
         {
             using (var cn = new SqlConnection(Config.GetConnectionString()))
@@ -279,12 +282,30 @@ namespace LMS_mastery.Data
                 var p = new DynamicParameters();
                 p.Add("@ClassId", request.ClassId);
                 p.Add("@LastName", request.LastName);
+                
+                
 
                 return
                     cn.Query<TeacherSearch>("RosterSearchByLastName", p, commandType: CommandType.StoredProcedure)
                         .ToList();
             }
-        } 
+        }
+
+        //Add a student to the Roster
+        public void AddToRoster(RosterAddRequest request)
+        {
+            using (var cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@RosterId", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                p.Add("@UserId", request.UserId);
+                p.Add("@ClassId", request.ClassId);
+
+                cn.Execute("RosterInsert", p, commandType: CommandType.StoredProcedure);
+
+                request.RosterId = p.Get<int>("@RosterId");
+            }
+        }
     }
 }
 

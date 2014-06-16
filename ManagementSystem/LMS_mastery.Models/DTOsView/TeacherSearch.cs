@@ -13,7 +13,7 @@ namespace LMS_mastery.Models.DTOsView
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public byte GradeLevel { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
     }
 }

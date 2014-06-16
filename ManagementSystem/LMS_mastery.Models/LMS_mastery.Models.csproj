@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="DTOsPerTable\Course.cs" />
     <Compile Include="DTOsStoredProcedure\CourseInfo.cs" />
+    <Compile Include="DTOsStoredProcedure\RosterAddRequest.cs" />
     <Compile Include="DTOsStoredProcedure\RosterSearchRequest.cs" />
     <Compile Include="DTOsView\Analytics.cs" />
     <Compile Include="DTOsView\ClassRosterModel.cs" />

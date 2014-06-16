@@ -32,22 +32,27 @@ namespace LMS_mastery.UI.Controllers
         public ActionResult Class(int id)
         {
             var repository = new TeacherRepository();
+            var model = new ClassRosterModel();
+            model.Roster = repository.GetRosterBy(id);
+            model.SearchRequest = new RosterSearchRequest();
+            model.SearchResults = new List<TeacherSearch>();
+
+
             
-            var students = repository.GetRosterBy(id);
-            
-            return View(students);
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult Class(RosterSearchRequest request)
+        public ActionResult Class(int id, ClassRosterModel model)
         {
             //create a new repository
             var repository = new TeacherRepository();
 
-            //create a new TeacherRoster
-            var model = new ClassRosterModel();
+            model.SearchRequest.ClassId = id;
             
-            model.SearchResults = repository.Search(request);
+            model.Roster = repository.GetRosterBy(id);
+            model.SearchRequest = model.SearchRequest;
+            model.SearchResults = repository.Search(model.SearchRequest);
            
            //return view with this model
             return View(model);
@@ -129,6 +134,16 @@ namespace LMS_mastery.UI.Controllers
                 return RedirectToAction("Index");
             }
             return View(course);
+        }
+
+        [HttpPost]
+        public ActionResult AddStudent(ClassRosterModel model)
+        {
+            var repository = new TeacherRepository();
+            
+            repository.AddToRoster(model.AddRequest);
+            
+            return RedirectToAction("Class", model.AddRequest.ClassId);
         }
 	}
 }

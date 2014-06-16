@@ -292,18 +292,17 @@ namespace LMS_mastery.Data
         }
 
         //Add a student to the Roster
-        public void AddToRoster(RosterAddRequest request)
+        public void AddToRoster(string UserId, int ClassId)
         {
             using (var cn = new SqlConnection(Config.GetConnectionString()))
             {
                 var p = new DynamicParameters();
-                p.Add("@RosterId", dbType: DbType.Int32, direction: ParameterDirection.Output);
-                p.Add("@UserId", request.UserId);
-                p.Add("@ClassId", request.ClassId);
+                
+                p.Add("@UserId", UserId);
+                p.Add("@ClassId", ClassId);
 
                 cn.Execute("RosterInsert", p, commandType: CommandType.StoredProcedure);
 
-                request.RosterId = p.Get<int>("@RosterId");
             }
         }
     }

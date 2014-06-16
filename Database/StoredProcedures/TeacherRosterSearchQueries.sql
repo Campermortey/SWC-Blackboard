@@ -42,3 +42,6 @@ WHERE ro.Name='Student'
 	AND u.GradeLevel = @GradeLevel
 
 GO
+
+
+EXEC RosterSearchByGradeLevel 8, 7

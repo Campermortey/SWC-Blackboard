@@ -32,12 +32,18 @@ namespace LMS_mastery.UI.Controllers
         public ActionResult Class(int id)
         {
             var repository = new TeacherRepository();
+
+            // Get a new ClassRoster Model
             var model = new ClassRosterModel();
+
+            // Set the roster equal to the output of "GetRosterById"
             model.Roster = repository.GetRosterBy(id);
+
+            // Search request is equal to a new RosterSearchRequest
             model.SearchRequest = new RosterSearchRequest();
+
+            //Results equal to the list of TeacherSearch
             model.SearchResults = new List<TeacherSearch>();
-
-
             
             return View(model);
         }
@@ -48,10 +54,16 @@ namespace LMS_mastery.UI.Controllers
             //create a new repository
             var repository = new TeacherRepository();
 
+            // Set the searchrequest.ClassId to the Id passed in
             model.SearchRequest.ClassId = id;
             
+            // Set the roster equal to the repository's get by roster Id
             model.Roster = repository.GetRosterBy(id);
+
+            // Allows the search boxes to still contain the typed in data
             model.SearchRequest = model.SearchRequest;
+
+            //Set the results equal to the output for "Search
             model.SearchResults = repository.Search(model.SearchRequest);
            
            //return view with this model
@@ -114,12 +126,14 @@ namespace LMS_mastery.UI.Controllers
             return View(course);
         }
 
+        // Add a course view
         public ActionResult AddCourse()
         {
            
             return View(new AddCourse());
         }
 
+        // Add a course
         [HttpPost]
         public ActionResult AddCourse(AddCourse course)
         {
@@ -136,14 +150,17 @@ namespace LMS_mastery.UI.Controllers
             return View(course);
         }
 
+        // Add a student from the list of students
         [HttpPost]
-        public ActionResult AddStudent(ClassRosterModel model)
+        public ActionResult AddStudent(string UserId, int ClassId)
         {
             var repository = new TeacherRepository();
             
-            repository.AddToRoster(model.AddRequest);
+            // AddToRoster takes parameters UserId and ClassId
+            repository.AddToRoster(UserId, ClassId);
             
-            return RedirectToAction("Class", model.AddRequest.ClassId);
+            // Must take in route data
+            return RedirectToAction("Class", new{id = ClassId});
         }
 	}
 }

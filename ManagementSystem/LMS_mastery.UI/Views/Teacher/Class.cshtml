@@ -128,7 +128,7 @@ else
                     <div class="col-sm-12">
                         @using (Html.BeginForm("Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, FormMethod.Post, new { role = "form" }))
                         {
-                            @Html.TextBox(Model.SearchRequest.LastName)
+                            @Html.TextBoxFor(m => m.SearchRequest.LastName, new { @class = "form-control" })
                             @Html.DropDownListFor(m => m.SearchRequest.GradeLevel, new List<SelectListItem>()
                             {
                                     new SelectListItem(){Text="1", Value="1"},
@@ -145,17 +145,31 @@ else
                                     new SelectListItem(){Text="12", Value="12"},
                                 },
                                     "- SELECT -", new { @class = "form-control" })
+                            <div class="col-sm-7 text-right">
+                                <button class="btn btn-primary">Search</button>
+                            </div>
                         }
-                        <table>
+                        <br />
+                        <br />
+
+                        <div class="row">
                             @foreach (var request in Model.SearchResults)
                             {
-                                <tr>
-                                    <td>@request.FirstName</td>
-                                    <td>@request.LastName</td>
-                                    <td>@request.GradeLevel</td>
-                                </tr>
+                                <ul class="list-group">
+                                    <li class="list-group-item" style="font-size: 19px">
+                                        <span class="badge" style="font-size: 19px">@request.GradeLevel</span>
+
+                                        @request.FirstName   @request.LastName
+                                        @using (Html.BeginForm("AddStudent", "Teacher", FormMethod.Post))
+                                        {
+                                            @Html.Hidden("UserId", request.UserId)
+                                            @Html.Hidden("ClassId", ViewContext.RouteData.Values["id"])
+                                            <button class="glyphicon glyphicon-plus"></button>
+                                        }
+                                    </li>
+                                </ul>
                             }
-                        </table>
+                        </div>
                     </div>
                 </div>
             </fieldset>

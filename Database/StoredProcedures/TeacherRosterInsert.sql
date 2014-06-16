@@ -1,10 +1,8 @@
 CREATE PROCEDURE RosterInsert (
 	@UserId nvarchar(128),
-	@ClassId int,
-	@RosterId int output
+	@ClassId int
 ) AS
 
 INSERT INTO Roster(ClassId, UserId, IsDeleted)
 VALUES (@ClassId, @UserId, 0);
 
-SET @RosterId = SCOPE_IDENTITY();

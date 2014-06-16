@@ -43,6 +43,7 @@
     <Compile Include="DTOsStoredProcedure\CourseInfo.cs" />
     <Compile Include="DTOsStoredProcedure\RosterSearchRequest.cs" />
     <Compile Include="DTOsView\Analytics.cs" />
+    <Compile Include="DTOsView\ClassRosterModel.cs" />
     <Compile Include="DTOsView\TeacherDashboard.cs" />
     <Compile Include="DTOsView\TeacherRoster.cs" />
     <Compile Include="DTOsView\TeacherSearch.cs" />

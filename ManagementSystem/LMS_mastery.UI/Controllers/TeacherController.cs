@@ -45,16 +45,9 @@ namespace LMS_mastery.UI.Controllers
             var repository = new TeacherRepository();
 
             //create a new TeacherRoster
-            var model = new TeacherRoster();
-            var listRoster = new List<TeacherSearch>();
-
-            //save the list of TeacherSearch to model.RosterSearch
-            listRoster = repository.Search(request);
-
-            model.RosterSearch = listRoster;
-            //model.ClassId = request.ClassId;
-            //model.RosterSearch = listRoster;
+            var model = new ClassRosterModel();
             
+            model.SearchResults = repository.Search(request);
            
            //return view with this model
             return View(model);

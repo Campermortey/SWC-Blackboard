@@ -1,4 +1,5 @@
-﻿@model IEnumerable<LMS_mastery.Models.DTOsView.TeacherRoster>
+﻿@*@model IEnumerable<LMS_mastery.Models.DTOsView.TeacherRoster>*@
+@model LMS_mastery.Models.DTOsView.ClassRosterModel
 
 @{
     ViewBag.Title = "Class";
@@ -31,7 +32,7 @@
                     <th></th>
                 </tr>
 
-                @foreach (var item in Model)
+                @foreach (var item in Model.Roster)
                 {
                     <tr>
                         <td>

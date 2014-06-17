@@ -27,6 +27,7 @@ namespace LMS_mastery.Models.DTOsView
         public int RosterId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string LetterGrade { get; set; }
         public List<GradebookStudentGrade> Grades { get; set; }
     }
 
@@ -38,5 +39,11 @@ namespace LMS_mastery.Models.DTOsView
         public int? Points { get; set; }
         public decimal? Score { get; set; }
         public int PointsPossible { get; set; }
+    }
+
+    public class GradebookLetterGrade
+    {
+        public int RosterId { get; set; }
+        public string LetterGrade { get; set; }
     }
 }

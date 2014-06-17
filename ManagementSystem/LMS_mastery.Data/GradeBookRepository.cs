@@ -29,10 +29,31 @@ namespace LMS_mastery.Data
                 foreach (var student in result.Students)
                 {
                     student.Grades = GetGradesFor(student.RosterId, courseId);
+
+                    // Set var "grade" equal to the GradebookLetterGrade object
+                    var grade = GetCourseGrade(student.RosterId, courseId);
+
+                    // If there is data in it, assign object.LetterGrade to the field student.LetterGrade
+                    if (grade != null)
+                        student.LetterGrade = grade.LetterGrade;
+                    else
+                        student.LetterGrade = "---";
                 }
             }
 
             return result;
+        }
+
+        private GradebookLetterGrade GetCourseGrade(int rosterId, int courseId)
+        {
+            using (var cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                var p = new DynamicParameters();
+                p.Add("@RosterId", rosterId);
+                p.Add("@ClassId", courseId);
+
+                return cn.Query<GradebookLetterGrade>("GetLetterGrade", p, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
         }
 
         private List<GradebookStudentGrade> GetGradesFor(int rosterId, int courseId)

@@ -111,7 +111,7 @@
                                 {
                                     @Html.Hidden("UserId", request.UserId)
                                     @Html.Hidden("ClassId", ViewContext.RouteData.Values["id"])
-                                    <button class="glyphicon glyphicon-plus"></button>
+                                    <button class="glyphicon glyphicon-plus plusSign"></button>
                                 }
                             </li>
                         </ul>
@@ -249,19 +249,19 @@ else
     }
     <script>
         $(document).ready(function () {
-            $('.glyphicon').mouseenter(function () {
+            $('.plusSign').mouseenter(function () {
                 $(this).animate({
                     height: '+=10px',
                     width: '+=10px'
                 });
             });
-            $('.glyphicon').mouseleave(function () {
+            $('.plusSign').mouseleave(function () {
                 $(this).animate({
                     height: '-=10px',
                     width: '-=10px'
                 });
             });
-            $('.glyphicon').click(function () {
+            $('.plusSign').click(function () {
                 $(this).toggle(1000);
             });
         });

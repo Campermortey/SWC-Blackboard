@@ -50,6 +50,7 @@
     <Compile Include="DTOsView\TeacherRoster.cs" />
     <Compile Include="DTOsView\TeacherSearch.cs" />
     <Compile Include="DTOsView\TeacherSectionView.cs" />
+    <Compile Include="Interfaces\IGradebookRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

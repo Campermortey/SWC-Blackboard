@@ -11,7 +11,7 @@
     <div class="btn-group" style="margin: 9px 0 5px;">
         @Html.ActionLink("Class Information", "Edit", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
         @Html.ActionLink("Roster", "Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
-        @Html.ActionLink("Gradebook", "GradebookView", "Gradebook", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
+        @Html.ActionLink("Gradebook", "Gradebook", "Course", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
     </div>
 </div>
 @if (Model.Roster.Count() > 0 && Model != null)

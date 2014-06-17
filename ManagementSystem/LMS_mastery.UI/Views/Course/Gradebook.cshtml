@@ -1,0 +1,73 @@
+﻿@model IEnumerable<LMS_mastery.Models.DTOsView.GradebookView>
+@{
+    ViewBag.Title = "GradeBook";
+}
+
+<h2>Gradebook View</h2>
+
+<div class="Links">
+    <div class="btn-group" style="margin: 9px 0 5px;">
+        <!--Small button bar that allows teacher to go to different areas in the website-->
+        @Html.ActionLink("Class Information", "Edit", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
+        @Html.ActionLink("Roster", "Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
+        @Html.ActionLink("Gradebook", "Gradebook", "Course", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
+    </div>
+</div>
+<div ng-app="gradebookModule" ng-controller="gradebookCtrl" class="row">
+    <h2>{{gradebook.CourseName}}</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th ng-repeat="assignment in gradebook.Assignments">{{assignment.Name}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="student in gradebook.Students">
+                <td>{{student.LastName}}, {{student.FirstName}}</td>
+                <td ng-repeat="grade in student.Grades">{{ formatGrade(grade.Score) }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@*if(grade.Score)!= null{grade.Score*100} else{Not Taken}*@
+
+@section scripts {
+    <script src="~/Scripts/angular.min.js"></script>
+    <script>
+        var app = angular.module('gradebookModule', []);
+
+        app.factory('gradebookFactory', function($http) {
+            var result = {};
+            var url = '/api/gradebook/';
+            var classId = '@ViewContext.RouteData.Values["id"]';
+
+            result.getGradebookInfo = function() {
+                return $http.get(url + classId);
+            };
+
+            return result;
+        });
+
+        app.controller('gradebookCtrl', function($scope, gradebookFactory) {
+            $scope.refreshGradebook = function() {
+                gradebookFactory.getGradebookInfo()
+                    .success(function(data) {
+                        $scope.gradebook = data;
+                    })
+                    .error(function(message, status) {
+                    alert(status + ': ' + message);
+                });
+            };
+
+            $scope.formatGrade = function(score) {
+                if (score == null)
+                    return 'N/A';
+                else {
+                    return score * 100 + '%';
+                }
+            };
+            $scope.refreshGradebook();
+        });
+    </script>
+}

@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using LMS_mastery.Data;
+using LMS_mastery.Models.DTOsView;
 
 namespace LMS_mastery.UI.Controllers
 {
-    public class GradebookController : Controller
+    public class GradebookController : ApiController
     {
-        //
-        // GET: /Gradebook/
-        public ActionResult GradebookView(int id)
+        // Show the GradeBook View
+        public GradebookView Get(int id)
         {
-            var repository = new TeacherRepository();
-            var model = repository.GetGradebookViews(id);
+            var repo = new GradeBookRepository();
 
-            return View(model);
+            // return the GradeBook View
+            return repo.GetGradebookFor(id);
         }
-	}
+    }
 }

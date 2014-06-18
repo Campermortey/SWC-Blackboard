@@ -20,11 +20,11 @@ namespace LMS_mastery.UI.Controllers
             return repo.GetGradebookFor(id);
         }
 
-        //public GradebookView Post(EditAssignment edit)
-        //{
-        //    var repo = new GradeBookRepository();
+       public HttpStatusCode Post(EditAssignment edit)
+       {
+            var repo = new GradeBookRepository();
 
-        //    return GradebookView;
-        //}
+           return HttpStatusCode.OK;
+       }
     }
 }

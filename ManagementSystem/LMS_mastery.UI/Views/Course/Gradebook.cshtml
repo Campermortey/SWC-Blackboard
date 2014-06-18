@@ -38,9 +38,9 @@
                         the data save() needs.  Handy huh?
                     *@
                     <div ng-show="editMode">
-                        <input ng-model="score.Points" />
-                        / {{score.PointsPossible}}
-                        <button ng-click="save();">
+                        <input ng-model="grade.Points" />
+                        / {{grade.PointsPossible}}
+                        <button ng-click="save(grade.AssignmentId, grade.RosterId, grade.Points);">
                             Save
                         </button>
                     </div>
@@ -68,9 +68,10 @@
                 return $http.get(url + classId);
             };
 
-            //result.postAssignmentScore = function() {
-            //    return $http.post(url, JSON object);
-            //};
+            result.postAssignmentScore = function(editInfo) {
+                return $http.post(url,  editInfo);
+
+            };
 
             return result;
         });
@@ -88,9 +89,28 @@
             // When the user is editing, this function will be attached to the ng-click on the button
             // in the real app we won't log, we'll send the actual points to the server then reload 
             // the student grade data for that row.
-            $scope.save = function () {
-               console.log('You would save ' + $scope.grade.Points + ' for assignmentId ' + $scope.grade.AssignmentId + ' here');
+            $scope.save = function (assignmentId, rosterId, points) {
+                var editInfo = {
+                    AssignmentId: assignmentId,
+                    RosterId: rosterId,
+                    Points: points
+                };
+                gradebookFactory.postAssignmentScore(editInfo)
+                    .success(function() {
+                        toastr.info('Score updated');
+                    })
+                    .error(function(message, status) {
+                    toastr.error(message + 'Not able to save' + status);
+                });
                 $scope.editMode = false;
+
+                gradebookFactory.getGradebookInfo()
+                    .success(function (data) {
+                        $scope.gradebook = data;
+                    })
+                    .error(function (message, status) {
+                        alert(status + ': ' + message);
+                    });
             }
         });
         app.controller('gradebookCtrl', function ($scope, gradebookFactory) {

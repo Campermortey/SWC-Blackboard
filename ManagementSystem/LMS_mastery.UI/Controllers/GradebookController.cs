@@ -23,6 +23,7 @@ namespace LMS_mastery.UI.Controllers
        public HttpStatusCode Post(EditAssignment edit)
        {
             var repo = new GradeBookRepository();
+           repo.EditTheAssignment(edit);
 
            return HttpStatusCode.OK;
        }

@@ -13,6 +13,23 @@ namespace LMS_mastery.Data
 {
     public class GradeBookRepository : IGradebookRepository
     {
+
+        public void EditTheAssignment(EditAssignment edit)
+        {
+            //creates a new SQL connection string
+            using (SqlConnection cn = new SqlConnection(Config.GetConnectionString()))
+            {
+                //binds SQL parameters to Course
+                var p = new DynamicParameters();
+                p.Add("@AssignmentId", edit.AssignmentId);
+                p.Add("@RosterId", edit.RosterId);
+                p.Add("@Points", edit.Points);
+
+                //Execute the stored procedure
+                cn.Execute("InsertScoreIntoAssignment", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
         public GradebookView GetGradebookFor(int courseId)
         {
             GradebookView result = new GradebookView();

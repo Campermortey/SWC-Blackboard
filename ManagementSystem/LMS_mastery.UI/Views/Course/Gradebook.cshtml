@@ -98,19 +98,21 @@
                 gradebookFactory.postAssignmentScore(editInfo)
                     .success(function() {
                         toastr.info('Score updated');
+                        gradebookFactory.getGradebookInfo()
+                            .success(function (data) {
+                                alert("Updating..");
+                                $scope.gradebook = data;
+                     })
+                            .error(function (message, status) {
+                                alert(status + ': ' + message);
+                    });
                     })
                     .error(function(message, status) {
                     toastr.error(message + 'Not able to save' + status);
                 });
                 $scope.editMode = false;
 
-                gradebookFactory.getGradebookInfo()
-                    .success(function (data) {
-                        $scope.gradebook = data;
-                    })
-                    .error(function (message, status) {
-                        alert(status + ': ' + message);
-                    });
+                
             }
         });
         app.controller('gradebookCtrl', function ($scope, gradebookFactory) {

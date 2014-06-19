@@ -4,7 +4,7 @@ CREATE PROCEDURE StudentGetClasses
 )AS
 
 --Selects the name and letter grade for a particular student
-SELECT c.Name, sg.LetterGrade, c.ClassId
+SELECT c.Name, sg.LetterGrade, c.ClassId, R.RosterId
 FROM AspNetUsers u
 	INNER JOIN Roster r
 	ON u.Id = r.UserId

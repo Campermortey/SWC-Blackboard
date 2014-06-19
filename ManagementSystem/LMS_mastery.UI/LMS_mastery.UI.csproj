@@ -197,6 +197,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Grades.css" />
     <Content Include="Content\landing-page.css" />
     <Content Include="Content\Pictures\178426857-717x359.jpg" />
     <Content Include="Content\Pictures\AssignmentView.JPG" />

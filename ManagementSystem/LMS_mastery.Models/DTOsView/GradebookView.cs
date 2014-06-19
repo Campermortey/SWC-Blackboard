@@ -38,7 +38,7 @@ namespace LMS_mastery.Models.DTOsView
         public int AssignmentId { get; set; }
         public int? Points { get; set; }
         public decimal? Score { get; set; }
-        public int PointsPossible { get; set; }
+        public int PossiblePoints { get; set; }
     }
 
     public class GradebookLetterGrade

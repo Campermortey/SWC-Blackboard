@@ -39,7 +39,7 @@
                     *@
                     <div ng-show="editMode">
                         <input ng-model="grade.Points" />
-                        / {{grade.PointsPossible}}
+                        / {{grade.PossiblePoints}}
                         <button ng-click="save(grade.AssignmentId, grade.RosterId, grade.Points);">
                             Save
                         </button>
@@ -99,7 +99,7 @@
                     .success(function() {
                         toastr.info('Score updated');
 
-                        // emit is saying on this event ('udateGradebook') other things will run
+                        // emit is saying on this event ('udateGradebook') other places that have this 'on' will run their function
                         $scope.$emit('updateGradebook');
                     })
                     .error(function(message, status) {

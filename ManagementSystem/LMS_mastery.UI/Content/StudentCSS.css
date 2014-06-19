@@ -1,0 +1,12 @@
+﻿#fontSize {
+    font-size: 18px;
+    font-family: Tahoma;
+}
+
+#bigger {
+    font-size: 20px;
+    font-weight: bolder;
+}
+.biggerLink {
+    font-size: 22px;
+}

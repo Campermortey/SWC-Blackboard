@@ -46,6 +46,8 @@
     <Compile Include="DTOsView\Analytics.cs" />
     <Compile Include="DTOsView\ClassRosterModel.cs" />
     <Compile Include="DTOsView\GradebookView.cs" />
+    <Compile Include="DTOsView\StudentDashboard.cs" />
+    <Compile Include="DTOsView\StudentGrades.cs" />
     <Compile Include="DTOsView\TeacherDashboard.cs" />
     <Compile Include="DTOsView\TeacherRoster.cs" />
     <Compile Include="DTOsView\TeacherSearch.cs" />

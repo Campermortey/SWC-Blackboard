@@ -1,0 +1,25 @@
+﻿@model LMS_mastery.Models.DTOsView.StudentGrades
+
+@{
+    ViewBag.Title = "Grades";
+}
+
+<h2>@Model.Name - Grades</h2>
+
+
+<table class="table">
+    
+@foreach (var item in Model.Grades) {
+    <tr>
+        <td>@item.Name</td>
+        <td>@item.Percentage</td>
+        <td>@item.LetterGrade</td>
+        
+    </tr>
+}
+
+</table>
+
+<script>
+    
+</script>

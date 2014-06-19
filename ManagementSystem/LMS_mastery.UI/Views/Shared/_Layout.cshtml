@@ -6,55 +6,67 @@
     <title>@ViewBag.Title - SWC-Blackboard</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @RenderSection("landingPage", required:false)
+    @RenderSection("landingPage", required: false)
 
 </head>
-    <body>
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Learning Management System", "Index", "Home", null, new{@class="navbar-brand"})
-                    @*<a class="navbar-brand" href="http://startbootstrap.com">Learning Management System</a>*@
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
-                    <ul class="nav navbar-nav">
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Dashboard", "Index", "Teacher")</li>
-
-                        </ul>
-                        @Html.Partial("_LoginPartial")
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Learning Management System", "Index", "Home", null, new { @class = "navbar-brand" })
+                @*<a class="navbar-brand" href="http://startbootstrap.com">Learning Management System</a>*@
             </div>
-            <!-- /.container -->
-        </nav>
-        @RenderSection("HomePage", required:false)
-        <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - SWC-Blackboard</p>
-            </footer>
-        </div>
 
-        @Scripts.Render("~/bundles/jquerytoastr")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-        @RenderSection("TeacherDashboard", required: false)
-        
-        <script>
-            $("body").css("font-family", "Verdana")
-        </script>
-    </body>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav">
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Teacher"))
+                        {
+                            <li>@Html.ActionLink("Dashboard", "Index", "Teacher")</li>
+                        }
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Student"))
+                        {
+                            <li>@Html.ActionLink("Dashboard", "Index", "Student")</li>
+                        }
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Parent"))
+                        {
+                            <li>@Html.ActionLink("Dashboard", "Index", "Parent")</li>
+                        }
+
+
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    @RenderSection("HomePage", required: false)
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - SWC-Blackboard</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquerytoastr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("TeacherDashboard", required: false)
+
+    <script>
+        $("body").css("font-family", "Verdana")
+    </script>
+</body>
 
 
 </html>

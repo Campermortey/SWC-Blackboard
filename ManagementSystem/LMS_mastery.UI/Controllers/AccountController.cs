@@ -53,6 +53,10 @@ namespace LMS_mastery.UI.Controllers
                     {
                         return RedirectToAction("Index", "Teacher");
                     }
+                    if (UserManager.GetRoles(user.Id).Contains("Student"))
+                    {
+                        return RedirectToAction("Index", "Student");
+                    }
                     return RedirectToLocal(returnUrl);
                 }
                 else

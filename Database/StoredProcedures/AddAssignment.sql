@@ -1,4 +1,4 @@
-ALTER PROCEDURE [dbo].[AssignmentInsert] (
+CREATE PROCEDURE AssignmentInsert (
 	@AssignmentId int output,
 	@ClassId int,
 	@Name varchar(50),

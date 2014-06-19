@@ -175,6 +175,7 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\GradebookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -201,6 +202,7 @@
     <Content Include="Content\Pictures\AssignmentView.JPG" />
     <Content Include="Content\Pictures\learning_management_system.jpg" />
     <Content Include="Content\Pictures\steelday2012-winner_sitn.jpg" />
+    <Content Include="Content\StudentCSS.css" />
     <Content Include="Content\TeacherDashboard.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -297,6 +299,8 @@
     <Content Include="Views\Teacher\AddCourse.cshtml" />
     <Content Include="Views\Course\Gradebook.cshtml" />
     <Content Include="Views\Course\AddAssignment.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Student\Grades.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

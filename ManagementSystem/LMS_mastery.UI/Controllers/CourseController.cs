@@ -15,13 +15,15 @@ namespace LMS_mastery.UI.Controllers
         {
             return View();
         }
-
         
-
         public ActionResult AddAssignment(int id)
         {
             var model = new AddAssignment();
+
+            // set the classId to the id passed in
             model.ClassId = id;
+
+            // return view with the assignment
             return View(model);
         }
 
@@ -31,9 +33,14 @@ namespace LMS_mastery.UI.Controllers
             var repository = new GradeBookRepository();
             if (ModelState.IsValid)
             {
+                // set the variable "dto" equal to the new assignment 
                 var dto = assignment.CreateAssignmentFromUIModel();
                 dto.ClassId = assignment.ClassId;
+
+                //add the assignment 
                 repository.AddAssignment(dto);
+
+                // redirect to Gradebook home 
                 return RedirectToAction("Gradebook", new { id = dto.ClassId });
             }
             return View(assignment);

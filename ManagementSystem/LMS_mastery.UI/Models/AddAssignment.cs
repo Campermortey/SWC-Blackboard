@@ -18,25 +18,12 @@ namespace LMS_mastery.UI.Models
         public int PossiblePoints { get; set; }
 
         [Required(ErrorMessage = "Please enter the due date")]
-        public DateTime DueDate { get; set; }
+        public DateTime? DueDate { get; set; }
 
         [Required(ErrorMessage = "Please enter the description")]
         public string Description { get; set; }
 
         public int ClassId { get; set; }
-
-        //public AddAssignment()
-        //{
-            
-        //}
-
-        //public AddAssignment(Assignment assignment)
-        //{
-        //    this.Name = assignment.Name;
-        //    this.PossiblePoints = assignment.PossiblePoints;
-        //    this.DueDate = assignment.
-
-        //}
 
         public Assignment CreateAssignmentFromUIModel()
         {
@@ -45,7 +32,7 @@ namespace LMS_mastery.UI.Models
                 ClassId = this.ClassId,
                 Name = this.Name,
                 PossiblePoints = this.PossiblePoints,
-                DueDate = this.DueDate,
+                DueDate = this.DueDate.Value,
                 Description = this.Description
             };
         }

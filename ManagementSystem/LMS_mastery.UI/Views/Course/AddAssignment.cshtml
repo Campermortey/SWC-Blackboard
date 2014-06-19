@@ -3,15 +3,21 @@
     ViewBag.Title = "AddAssignment";
 }
 
-<h2>AddAssignment</h2>
-
+<h2>Add Assignment</h2>
+<div class="btn-group" style="margin: 9px 0 5px;">
+    <!--Small button bar that allows teacher to go to different areas in the website-->
+    @Html.ActionLink("Class Information", "Edit", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
+    @Html.ActionLink("Roster", "Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
+    @Html.ActionLink("Gradebook", "Gradebook", "Course", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
+</div>
 @using (Html.BeginForm("AddAssignment", "Course", FormMethod.Post, new { role = "form" }))
 {
+    <!--Pass in the ClassId-->
     @Html.HiddenFor(m=>m.ClassId)
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>AddAssignment</h4>
+    
         <hr />
         @Html.ValidationSummary(true)
         

@@ -11,9 +11,11 @@
             @Html.ActionLink("Class Information", "Edit", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
             @Html.ActionLink("Roster", "Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
             @Html.ActionLink("Gradebook", "Gradebook", "Course", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
+            @Html.ActionLink("Add an Assignment", "AddAssignment", "Course", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-info", @type = "button" })
         </div>
     </div>
-    @Html.ActionLink("Add an Assignment", "AddAssignment", "Course", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-info", @type = "button" })
+    <br/>
+   
     <table class="table table-striped">
         <thead>
             <tr>

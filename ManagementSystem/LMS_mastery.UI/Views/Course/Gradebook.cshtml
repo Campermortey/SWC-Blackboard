@@ -28,14 +28,14 @@
                 <td>{{student.LetterGrade}}</td>
                 <td ng-controller="ItemCtrl" ng-repeat="grade in student.Grades" ng-init="grade=grade;">
                     @* Here we have a span with the percent score for this assignment/student.  If they click it, we want to flip the cell to edit mode which
-                        will hide the score percent.  Sometimes though, we won't have a percent because the assignment has not been graded yet, so if the
-                        ActualPoints is null we will instead show a pencil icon.  Also note we don't have to bind ng-show to a simple bool, we can write javascript
-                        expressions as well.  In fact, you can write javascript code in many angular directives if you need to.
+            will hide the score percent.  Sometimes though, we won't have a percent because the assignment has not been graded yet, so if the
+            ActualPoints is null we will instead show a pencil icon.  Also note we don't have to bind ng-show to a simple bool, we can write javascript
+            expressions as well.  In fact, you can write javascript code in many angular directives if you need to.
                     *@
                     <span ng-click="showForm()" ng-hide="editMode">{{formatGrade(grade.Score)}}<i ng-show="grade.Points == null" class="glyphicon glyphicon-pencil"></i></span>
                     @* If we are in editMode, let's show a textbox with the current ActualPoints.  They can change this value and click the save button.  Notice
-                        that save takes no parameters.  Look at the code in ItemCtrl... since we attached the score to the ItemCtrl scope in the ng-Init, we already have
-                        the data save() needs.  Handy huh?
+            that save takes no parameters.  Look at the code in ItemCtrl... since we attached the score to the ItemCtrl scope in the ng-Init, we already have
+            the data save() needs.  Handy huh?
                     *@
                     <div ng-show="editMode">
                         <input ng-model="grade.Points" />
@@ -86,10 +86,10 @@
                 $scope.editMode = true;
             }
 
-            // When the user is editing, this function will be attached to the ng-click on the button
-            // in the real app we won't log, we'll send the actual points to the server then reload 
-            // the student grade data for that row.
+            // On click, AngularJS saves the input to the database
+            // Passed in are assignmentId, rosterid, and points
             $scope.save = function (assignmentId, rosterId, points) {
+                // making a new object setting the properties 
                 var editInfo = {
                     AssignmentId: assignmentId,
                     RosterId: rosterId,
@@ -98,14 +98,9 @@
                 gradebookFactory.postAssignmentScore(editInfo)
                     .success(function() {
                         toastr.info('Score updated');
-                        gradebookFactory.getGradebookInfo()
-                            .success(function (data) {
-                                alert("Updating..");
-                                $scope.gradebook = data;
-                     })
-                            .error(function (message, status) {
-                                alert(status + ': ' + message);
-                    });
+
+                        // emit is saying on this event ('udateGradebook') other things will run
+                        $scope.$emit('updateGradebook');
                     })
                     .error(function(message, status) {
                     toastr.error(message + 'Not able to save' + status);
@@ -128,12 +123,17 @@
 
             $scope.formatGrade = function (score) {
                 if (score == null)
-                    return 'N/A';
+                    return '';
                 else {
                     return Math.round(score * 100, 2) + '%';
                 }
             };
             $scope.refreshGradebook();
+
+            $scope.$on('updateGradebook', function () {
+                $scope.refreshGradebook();
+            });
         });
+        
     </script>
 }

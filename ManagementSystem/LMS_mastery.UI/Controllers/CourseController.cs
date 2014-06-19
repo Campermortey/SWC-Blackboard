@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LMS_mastery.Data;
+using LMS_mastery.Models.DTOsView;
+using LMS_mastery.UI.Models;
 
 namespace LMS_mastery.UI.Controllers
 {
@@ -13,20 +16,28 @@ namespace LMS_mastery.UI.Controllers
             return View();
         }
 
-        public ActionResult Assignments(int id)
-        {
-            return View();
-        }
+        
 
         public ActionResult AddAssignment(int id)
         {
-            return View();
+            var model = new AddAssignment();
+            model.ClassId = id;
+            return View(model);
         }
 
         [HttpPost]
-        public ActionResult AddAssignment()
+        public ActionResult AddAssignment(AddAssignment assignment)
         {
-            return RedirectToAction("Assignments");
+            var repository = new GradeBookRepository();
+            if (ModelState.IsValid)
+            {
+                var dto = assignment.CreateAssignmentFromUIModel();
+                dto.ClassId = assignment.ClassId;
+                repository.AddAssignment(dto);
+                return RedirectToAction("Gradebook", new { id = dto.ClassId });
+            }
+            return View(assignment);
+
         }
 
         public ActionResult EditAssignment(int id)

@@ -13,6 +13,7 @@
             @Html.ActionLink("Gradebook", "Gradebook", "Course", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
         </div>
     </div>
+    @Html.ActionLink("Add an Assignment", "AddAssignment", "Course", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-info", @type = "button" })
     <table class="table table-striped">
         <thead>
             <tr>

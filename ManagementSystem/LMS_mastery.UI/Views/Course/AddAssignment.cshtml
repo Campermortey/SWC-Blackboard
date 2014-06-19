@@ -1,0 +1,58 @@
+﻿@model LMS_mastery.UI.Models.AddAssignment
+@{
+    ViewBag.Title = "AddAssignment";
+}
+
+<h2>AddAssignment</h2>
+
+@using (Html.BeginForm("AddAssignment", "Course", FormMethod.Post, new { role = "form" }))
+{
+    @Html.HiddenFor(m=>m.ClassId)
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>AddAssignment</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PossiblePoints, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PossiblePoints)
+                @Html.ValidationMessageFor(model => model.PossiblePoints)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DueDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DueDate)
+                @Html.ValidationMessageFor(model => model.DueDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="col-sm-7 text-right">
+            @Html.ActionLink("Cancel", "Gradebook", "Course", null, new { @class = "btn btn-default" })
+
+            <button class="btn btn-primary">Save Record</button>
+        </div>
+    </div>
+}

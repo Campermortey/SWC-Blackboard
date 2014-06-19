@@ -53,4 +53,14 @@ namespace LMS_mastery.Models.DTOsView
         public int RosterId { get; set; }
         public decimal Points { get; set; }
     }
+
+    public class Assignment
+    {
+        public int AssignmentId { get; set; }
+        public int ClassId { get; set; }
+        public string Name { get; set; }
+        public int PossiblePoints { get; set; }
+        public DateTime DueDate { get; set; }
+        public string Description { get; set; }
+    }
 }

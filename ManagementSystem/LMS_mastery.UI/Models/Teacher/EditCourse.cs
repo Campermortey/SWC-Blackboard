@@ -13,16 +13,17 @@ namespace LMS_mastery.UI.Models.Teacher
         [Required(ErrorMessage = "Please enter the course name")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Please enter the grade level for the course")]
         public byte? GradeLevel { get; set; }
 
         [Required(ErrorMessage = "Please enter a subject for the course")]
         public string Subject { get; set; }
 
         [Required(ErrorMessage = "Please enter the start date")]
+        [Range(typeof(DateTime), "01/01/2000", "01/01/2020")]
         public DateTime? StartDate { get; set; }
 
         [Required(ErrorMessage = "Please enter the ending date")]
+        [Range(typeof(DateTime), "01/01/2000", "01/01/2020")]
         public DateTime? EndDate { get; set; }
 
         [Required(ErrorMessage = "Please enter a description for the course")]

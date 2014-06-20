@@ -125,7 +125,7 @@
             };
 
             $scope.formatGrade = function (score) {
-                if (score == null)
+                if (score === null)
                     return '';
                 else {
                     return Math.round(score * 100, 2) + '%';

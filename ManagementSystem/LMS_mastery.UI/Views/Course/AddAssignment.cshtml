@@ -10,7 +10,7 @@
     @Html.ActionLink("Roster", "Class", "Teacher", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
     @Html.ActionLink("Gradebook", "Gradebook", "Course", new { id = ViewContext.RouteData.Values["id"] }, new { @class = "btn btn-default", @type = "button" })
 </div>
-@using (Html.BeginForm("AddAssignment", "Course", FormMethod.Post, new { role = "form" }))
+@using (Html.BeginForm("AddAssignment", "Course", FormMethod.Post, new { role = "form", @class= "form-horizontal"}))
 {
     <!--Pass in the ClassId-->
     @Html.HiddenFor(m=>m.ClassId)

@@ -175,6 +175,7 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\GradebookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ParentController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Global.asax.cs">
@@ -302,6 +303,9 @@
     <Content Include="Views\Course\AddAssignment.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Grades.cshtml" />
+    <Content Include="Views\Parent\Index.cshtml" />
+    <Content Include="Views\Parent\Classes.cshtml" />
+    <Content Include="Views\Parent\Grades.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

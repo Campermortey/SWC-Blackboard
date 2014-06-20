@@ -1,0 +1,25 @@
+﻿@model LMS_mastery.Models.DTOsView.StudentGrades
+
+@{
+    ViewBag.Title = "Grades";
+}
+
+<h2>@Model.Name - Grades</h2>
+
+
+<div class="row">
+    @foreach (var assignment in Model.Grades)
+    {
+        <div class="well well-lg col-sm-2">
+            <h4>@assignment.Name</h4>
+            <h3>@assignment.Percentage  |  <label id="letterGrade">@assignment.LetterGrade</label></h3>
+        </div>
+    }
+</div>
+
+
+
+@section scripts{
+
+    <link href="~/Content/Grades.css" rel="stylesheet" />
+}

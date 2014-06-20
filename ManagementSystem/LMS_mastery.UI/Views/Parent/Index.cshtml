@@ -1,0 +1,24 @@
+﻿@model IEnumerable<LMS_mastery.Models.DTOsView.ParentDashboard>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Parent Dashboard</h2>
+<br/>
+<h4>My Students</h4>
+<table class="table">
+    
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.ActionLink("View Classes", "Classes", "Parent", new { id = item.ChildId }, new { @class = "label label-info" })
+        </td>
+        
+    </tr>
+}
+
+</table>

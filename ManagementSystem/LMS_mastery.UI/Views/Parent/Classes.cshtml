@@ -1,0 +1,33 @@
+﻿@model IEnumerable<LMS_mastery.Models.DTOsView.StudentDashboard>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Student Dashboard</h1>
+
+<h2>My Classes</h2>
+
+
+<div class="row">
+    <fieldset>
+        <table class="col-sm-8 col-sm-offset-1">
+            <tbody>
+                @foreach (var course in Model)
+                {
+                    <tr>
+                        <td><span class="glyphicon glyphicon-chevron-right"> </span><span id="fontSize">@course.Name</span></td>
+                        <td id="bigger">@course.LetterGrade</td>
+                        <td class="col-sm-offset-2 biggerLink">@Html.ActionLink("View Grades", "Grades", "Student", new { id = course.RosterId }, new { @class = "label label-info" })</td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </fieldset>
+</div>
+
+
+@section scripts{
+
+    <link href="~/Content/StudentCSS.css" rel="stylesheet" />
+}

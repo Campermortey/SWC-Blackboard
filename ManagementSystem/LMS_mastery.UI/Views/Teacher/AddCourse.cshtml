@@ -16,7 +16,7 @@
                     <div class="col-sm-6">
                         @Html.AntiForgeryToken()
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+                            <strong>Name</strong> 
                             <div>
                                 @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.Name)
@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.GradeLevel, new { @class = "control-label" })
+                            <strong>Grade Level</strong> 
                             <div>
 
                                 @Html.DropDownListFor(m => m.GradeLevel, new List<SelectListItem>()
@@ -52,21 +52,21 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Subject, new { @class = "control-label" })
+                            <strong>Subject</strong> 
                             <div>
                                 @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.Subject)
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.StartDate, new { @class = "control-label" })
+                            <strong>Start Date</strong> 
                             <div>
                                 @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.StartDate)
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m => m.EndDate, new { @class = "control-label" })
+                            <strong>End Date</strong> 
                             <div>
                                 @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(m => m.EndDate)
@@ -75,7 +75,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+                            <strong>Description</strong> 
                             <div>
                                 @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
                             </div>

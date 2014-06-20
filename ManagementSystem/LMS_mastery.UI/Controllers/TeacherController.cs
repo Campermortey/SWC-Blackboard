@@ -103,6 +103,7 @@ namespace LMS_mastery.UI.Controllers
         [HttpPost]
         public ActionResult Edit(EditCourse course)
         {
+            var repository = new TeacherRepository();
             //If everything is Valid in the form then it proceeds
             if (ModelState.IsValid)
             {
@@ -111,8 +112,6 @@ namespace LMS_mastery.UI.Controllers
 
                 //sets the UserId = the UserId of the User logged in
                 dto.UserId = User.Identity.GetUserId();
-
-                var repository = new TeacherRepository();
 
                 //Saves it to the repository
                 repository.EditCourse(dto);
@@ -123,7 +122,13 @@ namespace LMS_mastery.UI.Controllers
 
                 return RedirectToAction("Index");
             }
-            return View(course);
+            var courses = repository.GetCourseById(course.ClassId);
+            //Create a new Course with the course passed in
+            var model = new EditCourse(courses);
+
+            //Get the class grades passed in Class Id save to Model.ClassAnalytics List
+            model.ClassAnalytics = repository.GetClassGrades(course.ClassId);
+            return View(model);
         }
 
         // Add a course view
